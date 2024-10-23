@@ -1,0 +1,88 @@
+# Mod text
+
+## Difficulty reduction
+### Japanese
+- EZ きがる (from Ouendan)
+- NF まけなし (literal)
+- HT ゆっくり (slowly, from slow down)
+
+### Chinese
+- EZ 易 (literal)
+- NF 仙 (from god mode in cheating sense)
+- HT 慢 (from slow down)
+
+## Difficulty increase
+### Japanese
+- HR げきれつ (激烈, from Ouendan)
+- SD そくし (即死, literal)
+- PF かんぺき (完璧, literal)
+- DT かそく (加速, from speed up)
+- NC ナイトコア (transliteration)
+- HD かくれ (from fade out)
+- FL でんとう (電灯, from "light")
+
+### Chinese
+- HR 激 (clipping of 激烈, from Ouendan)
+- SD 懸 (as in 命懸一線)
+- PF 極 (perfection)
+- DT 速 (speed, from speed up)
+- NC 夜 (clipping of literal translation 夜核)
+- HD 隠 (literal)
+- FL 灯 (from "light")
+
+## Special
+### Japanese
+- RL おちつく (literal)
+- AP じそう (自走, "self-piloting")
+- SO でんどうき (電動機, electrical motor automatically spins)
+- AT じどう (自動, literal)
+- CN げきじょう (劇場, literal)
+- V2 しんうち (真打, from Taiko no Tatsujin)
+- TD タッチ (transliteration of "touch")
+
+### Chinese
+- RL 静 (calm)
+- AP 撃 (from tapping only gameplay)
+- SO 轉 (spin, from spinner)
+- AT 觀 (from watching the autoplay)
+- CN 影 (movie)
+- V2 真 (clipping of 真打, from Taiko no Tatsujin)
+- TD 触 (touch)
+
+## osu!mania
+### Japanese
+- FI とつぜん (突然, from Beatmania IIDX "sudden")
+- CP ダブル (from Beatmania IIDX)
+- MR かがみ (literal)
+- RD でたらめ (from Taiko no Tatsujin)
+
+### Chinese
+- FI 突 (clipping of 突然, from Beatmania IIDX "sudden")
+- CP 雙 (double)
+- MR 鏡 (literal)
+- RD 随 (clipping of 随机)
+
+## Key mods
+### Japanese
+- 1K 一けん (一鍵)
+- 2K 二けん (二鍵)
+- 3K 三けん (三鍵)
+- 4K 四けん (四鍵)
+- 5K 五けん (五鍵)
+- 6K 六けん (六鍵)
+- 7K 七けん (七鍵)
+- 8K 八けん (八鍵)
+- 9K 九けん (九鍵)
+- 10K 十けん (十鍵)
+
+### Chinese
+- 1K 一
+- 2K 二
+- 3K 三
+- 4K 四
+- 5K 五
+- 6K 六
+- 7K 七
+- 8K 八
+- 9K 九
+- 10K 十

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" version="1.1" viewBox="-24 -24 48 48"
+  xmlns="http://www.w3.org/2000/svg">
+  <circle id="animated" r="10" fill="#f7bf00" stroke="#000"
+    stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
+    style="paint-order:stroke fill markers" />
+</svg>

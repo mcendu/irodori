@@ -1,0 +1,11 @@
+# make output
+*.png
+*.osk
+
+# animations
+hit0-*.svg
+hit50-*.svg
+hit100-*.svg
+hit100k-*.svg
+sliderendmiss-*.svg
+slidertickmiss-*.svg

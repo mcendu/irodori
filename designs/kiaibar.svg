@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1366"
+   height="768"
+   viewBox="0 0 1366 768"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="kiaibar.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1"
+     inkscape:cx="571"
+     inkscape:cy="172.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect5"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,4,0,1 @ F,0,0,1,0,4,0,1 @ F,0,0,1,0,4,0,1 @ F,0,0,1,0,0,0,1"
+       radius="4"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <linearGradient
+       id="linearGradient3"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#ffe174;stop-opacity:1;"
+         offset="0"
+         id="stop3" />
+      <stop
+         style="stop-color:#e6b100;stop-opacity:1;"
+         offset="0.5"
+         id="stop5" />
+      <stop
+         style="stop-color:#e6b100;stop-opacity:1;"
+         offset="1"
+         id="stop4" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,4,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,4,0,1 @ F,0,0,1,0,4,0,1 @ F,0,0,1,0,4,0,1 @ F,0,0,1,0,4,0,1"
+       radius="4"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3"
+       id="linearGradient4"
+       x1="235.42516"
+       y1="-62.351746"
+       x2="235.42516"
+       y2="-22.351746"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g6"
+       inkscape:label="Health area"
+       style="stroke-width:4;stroke-dasharray:none"
+       transform="translate(24.575838,38.351744)">
+      <g
+         id="g5"
+         inkscape:label="Health bar"
+         style="stroke-width:4;stroke-dasharray:none"
+         transform="translate(-9.9998569e-4)">
+        <rect
+           style="fill:#ff9bbd;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+           id="rect1"
+           width="520"
+           height="16"
+           x="24.000999"
+           y="16"
+           rx="4"
+           inkscape:label="Health" />
+        <path
+           id="path5"
+           style="fill:#fadbe4;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+           inkscape:transform-center-y="-0.7490235"
+           d="m 22.000431,9.9999962 c -2,1.9999988 -3,4.0000038 -3,7.0000008 0,0.0404 0.003,0.08381 0.004,0.125 -0.0389,-0.01352 -0.0788,-0.03048 -0.11719,-0.04297 -2.85317,-0.927051 -5.06384,-0.594624 -7.58399,0.689453 0.64204,1.260072 2.23646,2.829656 3.1875,3.138672 -0.95104,-0.309016 -3.16375,0.02398 -4.42382,0.666015 1.28407,2.520144 2.8773,4.088575 5.73047,5.015626 0.0382,0.01242 0.0799,0.02328 0.11914,0.03516 -0.0247,0.03262 -0.0526,0.06518 -0.0762,0.09766 -1.76335,2.427049 -2.12996,4.632177 -1.6875,7.425782 1.3968,-0.221232 3.38292,-1.251538 3.97071,-2.060547 -0.58779,0.809009 -0.95561,3.015304 -0.73438,4.412109 2.7936,-0.442462 4.77766,-1.473342 6.54102,-3.900391 0.0239,-0.03285 0.0466,-0.06952 0.0703,-0.103515 0.0237,0.03399 0.0464,0.07066 0.0703,0.103515 1.76336,2.427053 3.74742,3.457924 6.54102,3.900391 0.22123,-1.396799 -0.1466,-3.603091 -0.73438,-4.412109 0.58778,0.809018 2.57391,1.839312 3.97071,2.060547 0.44246,-2.793598 0.0758,-4.998729 -1.6875,-7.425782 -0.0236,-0.03248 -0.0515,-0.06503 -0.0762,-0.09766 0.0392,-0.01188 0.0809,-0.02274 0.11914,-0.03516 2.85317,-0.927053 4.4464,-2.495487 5.73047,-5.015625 -1.26006,-0.642037 -3.47278,-0.975027 -4.42382,-0.666016 0.95104,-0.309011 2.54546,-1.878602 3.1875,-3.138672 -2.52014,-1.284072 -4.73082,-1.616497 -7.58399,-0.689453 -0.0384,0.01249 -0.0783,0.02945 -0.11719,0.04297 8.4e-4,-0.04119 0.004,-0.0846 0.004,-0.125 0,-2.999997 -1,-5.000002 -3,-7.0000007 -0.0619,0.061881 -0.12695,0.1307857 -0.18945,0.2011727 -0.007,0.008 -0.0144,0.01727 -0.0215,0.02539 -0.92516,1.051248 -1.78917,2.843786 -1.78917,3.773438 0,-0.999999 -1,-3.000001 -2,-4.0000008 z m 0.41211,11.8125008 c 0.46823,0.119209 0.9939,0.1875 1.58789,0.1875 0.59399,0 1.11966,-0.06829 1.58789,-0.1875 0.0313,0.482265 0.13085,1.005234 0.31445,1.570312 0.18374,0.565463 0.41155,1.044398 0.66993,1.453126 -0.44936,0.178801 -0.91539,0.431711 -1.39649,0.78125 -0.48105,0.349504 -0.86689,0.715822 -1.17578,1.08789 -0.30889,-0.372068 -0.69473,-0.738387 -1.17578,-1.087891 -0.4811,-0.349537 -0.94713,-0.60245 -1.39649,-0.78125 0.25838,-0.408729 0.4862,-0.887661 0.66993,-1.453126 0.1836,-0.565078 0.28317,-1.088047 0.31445,-1.570311 z"
+           inkscape:label="Ki mark" />
+      </g>
+      <g
+         id="g2"
+         transform="translate(19.999579,-12)"
+         inkscape:label="Scores"
+         style="stroke:#000000;stroke-width:4;stroke-dasharray:none;stroke-opacity:1">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Potta One';-inkscape-font-specification:'Potta One';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:start;letter-spacing:2px;text-anchor:start;fill:#f1f1f1;fill-opacity:1;stroke-width:4;stroke-dasharray:none;paint-order:stroke fill markers"
+           x="68"
+           y="52"
+           id="text1"
+           inkscape:label="Score"><tspan
+             sodipodi:role="line"
+             id="tspan1"
+             x="68"
+             y="52">1000110</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Potta One';-inkscape-font-specification:'Potta One';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:end;letter-spacing:2px;text-anchor:end;fill:#f1f1f1;fill-opacity:1;stroke-width:4;stroke-dasharray:none;paint-order:stroke fill markers"
+           x="246"
+           y="52"
+           id="text1-7"
+           inkscape:label="Accuracy"><tspan
+             sodipodi:role="line"
+             id="tspan1-6"
+             x="248"
+             y="52">100.00</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:'Potta One';-inkscape-font-specification:'Potta One';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:start;letter-spacing:0px;text-anchor:start;fill:#f1aeff;fill-opacity:1;stroke-width:4;stroke-dasharray:none;paint-order:stroke fill markers"
+           x="28"
+           y="52"
+           id="text4"
+           inkscape:label="Grade"><tspan
+             sodipodi:role="line"
+             id="tspan4"
+             x="28"
+             y="52">SS</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g7"
+       style="stroke-width:4;stroke-dasharray:none"
+       transform="translate(-512.84932,264.35174)">
+      <path
+         id="rect2"
+         style="fill:#8ccb00;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+         d="m -180.57484,-42.351744 h 336 v -12 a 4,4 135 0 1 4,-4 h 332 a 4,4 45 0 1 4,4 v 27.999998 a 4,4 135 0 1 -4,4 h -672 a 4,4 45 0 1 -4,-4 v -11.999998 a 4,4 135 0 1 4,-4 z"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:path-effect="#path-effect2"
+         inkscape:original-d="m -184.57484,-42.351744 h 340 v -16 h 340 v 35.999998 h -680 z"
+         transform="translate(731.42416,-77.999996)" />
+      <path
+         style="fill:url(#linearGradient4);fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0.25;paint-order:stroke fill markers"
+         id="rect3"
+         width="340"
+         height="36"
+         x="235.42516"
+         y="-62.351746"
+         inkscape:path-effect="#path-effect5"
+         sodipodi:type="rect"
+         d="m 239.42516,-62.351746 h 332 a 4,4 45 0 1 4,4 v 28 a 4,4 135 0 1 -4,4 h -336 v -32 a 4,4 135 0 1 4,-4 z"
+         transform="translate(651.42415,-73.999993)" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:60px;font-family:'Yuji Mai';-inkscape-font-specification:'Yuji Mai';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:end;letter-spacing:0px;text-anchor:end;fill:#f3f3f3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke fill markers"
+         x="1261.0425"
+         y="-96.183235"
+         id="text7"><tspan
+           sodipodi:role="line"
+           id="tspan7"
+           x="1261.0425"
+           y="-96.183235">気</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-size:20px;font-family:'Rounded Mplus 1c';-inkscape-font-specification:'Rounded Mplus 1c Heavy';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:start;letter-spacing:-2px;text-anchor:start;fill:#f3f3f3;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke fill markers"
+         x="888.8493"
+         y="-116.35174"
+         id="text8"><tspan
+           sodipodi:role="line"
+           id="tspan8"
+           x="888.8493"
+           y="-116.35174">ノルマ</tspan></text>
+    </g>
+  </g>
+</svg>
