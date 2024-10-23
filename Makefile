@@ -25,6 +25,21 @@ OBJECTS=\
 	hit0-12.png \
 	hit0-13.png \
 	hit0-14.png \
+	hit0-15.png \
+	hit0-16.png \
+	hit0-17.png \
+	hit0-18.png \
+	hit0-19.png \
+	hit0-20.png \
+	hit0-21.png \
+	hit0-22.png \
+	hit0-23.png \
+	hit0-24.png \
+	hit0-25.png \
+	hit0-26.png \
+	hit0-27.png \
+	hit0-28.png \
+	hit0-29.png \
 	hit50.png \
 	hit50-0.png \
 	hit50-1.png \
@@ -41,6 +56,21 @@ OBJECTS=\
 	hit50-12.png \
 	hit50-13.png \
 	hit50-14.png \
+	hit50-15.png \
+	hit50-16.png \
+	hit50-17.png \
+	hit50-18.png \
+	hit50-19.png \
+	hit50-20.png \
+	hit50-21.png \
+	hit50-22.png \
+	hit50-23.png \
+	hit50-24.png \
+	hit50-25.png \
+	hit50-26.png \
+	hit50-27.png \
+	hit50-28.png \
+	hit50-29.png \
 	hit100.png \
 	hit100-0.png \
 	hit100-1.png \
@@ -57,6 +87,21 @@ OBJECTS=\
 	hit100-12.png \
 	hit100-13.png \
 	hit100-14.png \
+	hit100-15.png \
+	hit100-16.png \
+	hit100-17.png \
+	hit100-18.png \
+	hit100-19.png \
+	hit100-20.png \
+	hit100-21.png \
+	hit100-22.png \
+	hit100-23.png \
+	hit100-24.png \
+	hit100-25.png \
+	hit100-26.png \
+	hit100-27.png \
+	hit100-28.png \
+	hit100-29.png \
 	hit100k.png \
 	hit100k-0.png \
 	hit100k-1.png \
@@ -73,6 +118,21 @@ OBJECTS=\
 	hit100k-12.png \
 	hit100k-13.png \
 	hit100k-14.png \
+	hit100k-15.png \
+	hit100k-16.png \
+	hit100k-17.png \
+	hit100k-18.png \
+	hit100k-19.png \
+	hit100k-20.png \
+	hit100k-21.png \
+	hit100k-22.png \
+	hit100k-23.png \
+	hit100k-24.png \
+	hit100k-25.png \
+	hit100k-26.png \
+	hit100k-27.png \
+	hit100k-28.png \
+	hit100k-29.png \
 	hit300.png \
 	hit300-0.png \
 	hit300k.png \
@@ -120,6 +180,21 @@ OBJECTS=\
 	sliderendmiss-12.png \
 	sliderendmiss-13.png \
 	sliderendmiss-14.png \
+	sliderendmiss-15.png \
+	sliderendmiss-16.png \
+	sliderendmiss-17.png \
+	sliderendmiss-18.png \
+	sliderendmiss-19.png \
+	sliderendmiss-20.png \
+	sliderendmiss-21.png \
+	sliderendmiss-22.png \
+	sliderendmiss-23.png \
+	sliderendmiss-24.png \
+	sliderendmiss-25.png \
+	sliderendmiss-26.png \
+	sliderendmiss-27.png \
+	sliderendmiss-28.png \
+	sliderendmiss-29.png \
 	sliderfollowcircle.png \
 	sliderscorepoint.png \
 	slidertickmiss-0.png \
@@ -136,7 +211,22 @@ OBJECTS=\
 	slidertickmiss-11.png \
 	slidertickmiss-12.png \
 	slidertickmiss-13.png \
-	slidertickmiss-14.png
+	slidertickmiss-14.png \
+	slidertickmiss-15.png \
+	slidertickmiss-16.png \
+	slidertickmiss-17.png \
+	slidertickmiss-18.png \
+	slidertickmiss-19.png \
+	slidertickmiss-20.png \
+	slidertickmiss-21.png \
+	slidertickmiss-22.png \
+	slidertickmiss-23.png \
+	slidertickmiss-24.png \
+	slidertickmiss-25.png \
+	slidertickmiss-26.png \
+	slidertickmiss-27.png \
+	slidertickmiss-28.png \
+	slidertickmiss-29.png \
 
 RESOURCES=\
 	skin.ini
@@ -153,7 +243,7 @@ all: irodori-$(VERSION).osk
 irodori-$(VERSION).osk: $(OBJECTS) $(RESOURCES)
 	zip -r $@ \
 		$(OBJECTS) \
-		$(OBJECTS:.png=@2x.png)\
+		$(OBJECTS:.png=@2x.png) \
 		$(RESOURCES)
 
 hit0-0.svg: animations/animate_miss.py animations/hit0.svg
@@ -172,6 +262,21 @@ hit0-11.svg: hit0-0.svg
 hit0-12.svg: hit0-0.svg
 hit0-13.svg: hit0-0.svg
 hit0-14.svg: hit0-0.svg
+hit0-15.svg: hit0-0.svg
+hit0-16.svg: hit0-0.svg
+hit0-17.svg: hit0-0.svg
+hit0-18.svg: hit0-0.svg
+hit0-19.svg: hit0-0.svg
+hit0-20.svg: hit0-0.svg
+hit0-21.svg: hit0-0.svg
+hit0-22.svg: hit0-0.svg
+hit0-23.svg: hit0-0.svg
+hit0-24.svg: hit0-0.svg
+hit0-25.svg: hit0-0.svg
+hit0-26.svg: hit0-0.svg
+hit0-27.svg: hit0-0.svg
+hit0-28.svg: hit0-0.svg
+hit0-29.svg: hit0-0.svg
 
 hit50-0.svg: animations/animate_hit.py animations/hit50.svg
 	animations/animate_hit.py animations/hit50.svg .
@@ -189,6 +294,21 @@ hit50-11.svg: hit50-0.svg
 hit50-12.svg: hit50-0.svg
 hit50-13.svg: hit50-0.svg
 hit50-14.svg: hit50-0.svg
+hit50-15.svg: hit50-0.svg
+hit50-16.svg: hit50-0.svg
+hit50-17.svg: hit50-0.svg
+hit50-18.svg: hit50-0.svg
+hit50-19.svg: hit50-0.svg
+hit50-20.svg: hit50-0.svg
+hit50-21.svg: hit50-0.svg
+hit50-22.svg: hit50-0.svg
+hit50-23.svg: hit50-0.svg
+hit50-24.svg: hit50-0.svg
+hit50-25.svg: hit50-0.svg
+hit50-26.svg: hit50-0.svg
+hit50-27.svg: hit50-0.svg
+hit50-28.svg: hit50-0.svg
+hit50-29.svg: hit50-0.svg
 
 hit100-0.svg: animations/animate_hit.py animations/hit100.svg
 	animations/animate_hit.py animations/hit100.svg .
@@ -206,6 +326,21 @@ hit100-11.svg: hit100-0.svg
 hit100-12.svg: hit100-0.svg
 hit100-13.svg: hit100-0.svg
 hit100-14.svg: hit100-0.svg
+hit100-15.svg: hit100-0.svg
+hit100-16.svg: hit100-0.svg
+hit100-17.svg: hit100-0.svg
+hit100-18.svg: hit100-0.svg
+hit100-19.svg: hit100-0.svg
+hit100-20.svg: hit100-0.svg
+hit100-21.svg: hit100-0.svg
+hit100-22.svg: hit100-0.svg
+hit100-23.svg: hit100-0.svg
+hit100-24.svg: hit100-0.svg
+hit100-25.svg: hit100-0.svg
+hit100-26.svg: hit100-0.svg
+hit100-27.svg: hit100-0.svg
+hit100-28.svg: hit100-0.svg
+hit100-29.svg: hit100-0.svg
 
 hit100k-0.svg: animations/animate_hit.py animations/hit100k.svg
 	animations/animate_hit.py animations/hit100k.svg .
@@ -223,6 +358,21 @@ hit100k-11.svg: hit100k-0.svg
 hit100k-12.svg: hit100k-0.svg
 hit100k-13.svg: hit100k-0.svg
 hit100k-14.svg: hit100k-0.svg
+hit100k-15.svg: hit100k-0.svg
+hit100k-16.svg: hit100k-0.svg
+hit100k-17.svg: hit100k-0.svg
+hit100k-18.svg: hit100k-0.svg
+hit100k-19.svg: hit100k-0.svg
+hit100k-20.svg: hit100k-0.svg
+hit100k-21.svg: hit100k-0.svg
+hit100k-22.svg: hit100k-0.svg
+hit100k-23.svg: hit100k-0.svg
+hit100k-24.svg: hit100k-0.svg
+hit100k-25.svg: hit100k-0.svg
+hit100k-26.svg: hit100k-0.svg
+hit100k-27.svg: hit100k-0.svg
+hit100k-28.svg: hit100k-0.svg
+hit100k-29.svg: hit100k-0.svg
 
 sliderendmiss-0.svg: animations/animate_miss.py animations/sliderendmiss.svg
 	animations/animate_miss.py animations/sliderendmiss.svg .
@@ -240,6 +390,21 @@ sliderendmiss-11.svg: sliderendmiss-0.svg
 sliderendmiss-12.svg: sliderendmiss-0.svg
 sliderendmiss-13.svg: sliderendmiss-0.svg
 sliderendmiss-14.svg: sliderendmiss-0.svg
+sliderendmiss-15.svg: sliderendmiss-0.svg
+sliderendmiss-16.svg: sliderendmiss-0.svg
+sliderendmiss-17.svg: sliderendmiss-0.svg
+sliderendmiss-18.svg: sliderendmiss-0.svg
+sliderendmiss-19.svg: sliderendmiss-0.svg
+sliderendmiss-20.svg: sliderendmiss-0.svg
+sliderendmiss-21.svg: sliderendmiss-0.svg
+sliderendmiss-22.svg: sliderendmiss-0.svg
+sliderendmiss-23.svg: sliderendmiss-0.svg
+sliderendmiss-24.svg: sliderendmiss-0.svg
+sliderendmiss-25.svg: sliderendmiss-0.svg
+sliderendmiss-26.svg: sliderendmiss-0.svg
+sliderendmiss-27.svg: sliderendmiss-0.svg
+sliderendmiss-28.svg: sliderendmiss-0.svg
+sliderendmiss-29.svg: sliderendmiss-0.svg
 
 slidertickmiss-0.svg: animations/animate_miss.py animations/slidertickmiss.svg
 	animations/animate_miss.py animations/slidertickmiss.svg .
@@ -257,6 +422,21 @@ slidertickmiss-11.svg: slidertickmiss-0.svg
 slidertickmiss-12.svg: slidertickmiss-0.svg
 slidertickmiss-13.svg: slidertickmiss-0.svg
 slidertickmiss-14.svg: slidertickmiss-0.svg
+slidertickmiss-15.svg: slidertickmiss-0.svg
+slidertickmiss-16.svg: slidertickmiss-0.svg
+slidertickmiss-17.svg: slidertickmiss-0.svg
+slidertickmiss-18.svg: slidertickmiss-0.svg
+slidertickmiss-19.svg: slidertickmiss-0.svg
+slidertickmiss-20.svg: slidertickmiss-0.svg
+slidertickmiss-21.svg: slidertickmiss-0.svg
+slidertickmiss-22.svg: slidertickmiss-0.svg
+slidertickmiss-23.svg: slidertickmiss-0.svg
+slidertickmiss-24.svg: slidertickmiss-0.svg
+slidertickmiss-25.svg: slidertickmiss-0.svg
+slidertickmiss-26.svg: slidertickmiss-0.svg
+slidertickmiss-27.svg: slidertickmiss-0.svg
+slidertickmiss-28.svg: slidertickmiss-0.svg
+slidertickmiss-29.svg: slidertickmiss-0.svg
 
 .PHONY: clean
 clean:
@@ -267,5 +447,5 @@ clean:
 	-rm sliderendmiss-*.svg
 	-rm slidertickmiss-*.svg
 	-rm $(OBJECTS)
-	-rm *@2x.png
+	-rm $(OBJECTS:.png=@2x.png)
 	-rm *.osk

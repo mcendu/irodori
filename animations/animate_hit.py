@@ -41,12 +41,12 @@ etree.register_namespace("", "http://www.w3.org/2000/svg")
 
 def opacity(frame: float) -> float:
     """The opacity animation."""
-    return max(0.0, min(1.0, (14 - frame) / 3.0))
+    return max(0.0, min(1.0, (29 - frame) / 6.0))
 
 
 def scale(frame: float) -> float:
     """The scale animation."""
-    curve = -(1 / 36) * pow(frame, 2) + (1 / 6) * frame + 1
+    curve = -(1 / 72) * pow(frame - 6, 2) + 0.5
     return max(1.0, curve)
 
 
@@ -106,5 +106,5 @@ if __name__ == "__main__":
     if tree.find(".//*[@id='animated']") is None:
         raise ValueError("input file has no animatable objects")
 
-    for i in range(15):
+    for i in range(30):
         generate_frame(tree, i, os.path.join(args.outdir, f"{basename}-{i}.svg"))
