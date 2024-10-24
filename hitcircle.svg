@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1"
-     inkscape:cx="-2.5"
-     inkscape:cy="37.5"
+     inkscape:cx="-3"
+     inkscape:cy="36.5"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -53,7 +53,7 @@
            inkscape:label="Center"
            r="41" />
         <circle
-           style="fill:none;fill-opacity:1;stroke:#d07494;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+           style="fill:none;fill-opacity:1;stroke:#e2e2e2;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
            id="path2"
            cx="0"
            cy="0"
