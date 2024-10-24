@@ -3,6 +3,7 @@
 *.osk
 
 # animations
+followpoint-*.svg
 hit0-*.svg
 hit50-*.svg
 hit100-*.svg

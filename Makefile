@@ -1,6 +1,6 @@
 .POSIX:
 
-VERSION=0.1
+VERSION=0.2
 
 INKSCAPE=inkscape
 
@@ -9,6 +9,78 @@ OBJECTS=\
 	cursor.png \
 	cursormiddle.png \
 	cursortrail.png \
+	followpoint-0.png \
+	followpoint-1.png \
+	followpoint-2.png \
+	followpoint-3.png \
+	followpoint-4.png \
+	followpoint-5.png \
+	followpoint-6.png \
+	followpoint-7.png \
+	followpoint-8.png \
+	followpoint-9.png \
+	followpoint-10.png \
+	followpoint-11.png \
+	followpoint-12.png \
+	followpoint-13.png \
+	followpoint-14.png \
+	followpoint-15.png \
+	followpoint-16.png \
+	followpoint-17.png \
+	followpoint-18.png \
+	followpoint-19.png \
+	followpoint-20.png \
+	followpoint-21.png \
+	followpoint-22.png \
+	followpoint-23.png \
+	followpoint-24.png \
+	followpoint-25.png \
+	followpoint-26.png \
+	followpoint-27.png \
+	followpoint-28.png \
+	followpoint-29.png \
+	followpoint-30.png \
+	followpoint-31.png \
+	followpoint-32.png \
+	followpoint-33.png \
+	followpoint-34.png \
+	followpoint-35.png \
+	followpoint-36.png \
+	followpoint-37.png \
+	followpoint-38.png \
+	followpoint-39.png \
+	followpoint-40.png \
+	followpoint-41.png \
+	followpoint-42.png \
+	followpoint-43.png \
+	followpoint-44.png \
+	followpoint-45.png \
+	followpoint-46.png \
+	followpoint-47.png \
+	followpoint-48.png \
+	followpoint-49.png \
+	followpoint-50.png \
+	followpoint-51.png \
+	followpoint-52.png \
+	followpoint-53.png \
+	followpoint-54.png \
+	followpoint-55.png \
+	followpoint-56.png \
+	followpoint-57.png \
+	followpoint-58.png \
+	followpoint-59.png \
+	followpoint-60.png \
+	followpoint-61.png \
+	followpoint-62.png \
+	followpoint-63.png \
+	followpoint-64.png \
+	followpoint-65.png \
+	followpoint-66.png \
+	followpoint-67.png \
+	followpoint-68.png \
+	followpoint-69.png \
+	followpoint-70.png \
+	followpoint-71.png \
 	hit0.png \
 	hit0-0.png \
 	hit0-1.png \
@@ -226,7 +298,7 @@ OBJECTS=\
 	slidertickmiss-26.png \
 	slidertickmiss-27.png \
 	slidertickmiss-28.png \
-	slidertickmiss-29.png \
+	slidertickmiss-29.png
 
 RESOURCES=\
 	skin.ini
@@ -234,17 +306,94 @@ RESOURCES=\
 .PHONY: all
 all: irodori-$(VERSION).osk
 
-.SUFFIXES: .svg .png 
+.SUFFIXES: .svg .png @2x.png
+
 .svg.png:
 	$(INKSCAPE) --export-type=png --export-filename=$@ $<
-	$(INKSCAPE) --export-type=png \
-		--export-dpi=192 --export-filename=$*@2x.png $<
 
-irodori-$(VERSION).osk: $(OBJECTS) $(RESOURCES)
+.svg@2x.png:
+	$(INKSCAPE) --export-type=png \
+		--export-dpi=192 --export-filename=$@ $<
+
+irodori-$(VERSION).osk: $(OBJECTS) $(OBJECTS:.png=@2x.png) $(RESOURCES)
 	zip -r $@ \
 		$(OBJECTS) \
 		$(OBJECTS:.png=@2x.png) \
 		$(RESOURCES)
+
+followpoint-0.svg: animations/followpoint.py animations/followpoint.svg
+	animations/followpoint.py animations/followpoint.svg .
+followpoint-1.svg: followpoint-0.svg
+followpoint-2.svg: followpoint-0.svg
+followpoint-3.svg: followpoint-0.svg
+followpoint-4.svg: followpoint-0.svg
+followpoint-5.svg: followpoint-0.svg
+followpoint-6.svg: followpoint-0.svg
+followpoint-7.svg: followpoint-0.svg
+followpoint-8.svg: followpoint-0.svg
+followpoint-9.svg: followpoint-0.svg
+followpoint-10.svg: followpoint-0.svg
+followpoint-11.svg: followpoint-0.svg
+followpoint-12.svg: followpoint-0.svg
+followpoint-13.svg: followpoint-0.svg
+followpoint-14.svg: followpoint-0.svg
+followpoint-15.svg: followpoint-0.svg
+followpoint-16.svg: followpoint-0.svg
+followpoint-17.svg: followpoint-0.svg
+followpoint-18.svg: followpoint-0.svg
+followpoint-19.svg: followpoint-0.svg
+followpoint-20.svg: followpoint-0.svg
+followpoint-21.svg: followpoint-0.svg
+followpoint-22.svg: followpoint-0.svg
+followpoint-23.svg: followpoint-0.svg
+followpoint-24.svg: followpoint-0.svg
+followpoint-25.svg: followpoint-0.svg
+followpoint-26.svg: followpoint-0.svg
+followpoint-27.svg: followpoint-0.svg
+followpoint-28.svg: followpoint-0.svg
+followpoint-29.svg: followpoint-0.svg
+followpoint-30.svg: followpoint-0.svg
+followpoint-31.svg: followpoint-0.svg
+followpoint-32.svg: followpoint-0.svg
+followpoint-33.svg: followpoint-0.svg
+followpoint-34.svg: followpoint-0.svg
+followpoint-35.svg: followpoint-0.svg
+followpoint-36.svg: followpoint-0.svg
+followpoint-37.svg: followpoint-0.svg
+followpoint-38.svg: followpoint-0.svg
+followpoint-39.svg: followpoint-0.svg
+followpoint-40.svg: followpoint-0.svg
+followpoint-41.svg: followpoint-0.svg
+followpoint-42.svg: followpoint-0.svg
+followpoint-43.svg: followpoint-0.svg
+followpoint-44.svg: followpoint-0.svg
+followpoint-45.svg: followpoint-0.svg
+followpoint-46.svg: followpoint-0.svg
+followpoint-47.svg: followpoint-0.svg
+followpoint-48.svg: followpoint-0.svg
+followpoint-49.svg: followpoint-0.svg
+followpoint-50.svg: followpoint-0.svg
+followpoint-51.svg: followpoint-0.svg
+followpoint-52.svg: followpoint-0.svg
+followpoint-53.svg: followpoint-0.svg
+followpoint-54.svg: followpoint-0.svg
+followpoint-55.svg: followpoint-0.svg
+followpoint-56.svg: followpoint-0.svg
+followpoint-57.svg: followpoint-0.svg
+followpoint-58.svg: followpoint-0.svg
+followpoint-59.svg: followpoint-0.svg
+followpoint-60.svg: followpoint-0.svg
+followpoint-61.svg: followpoint-0.svg
+followpoint-62.svg: followpoint-0.svg
+followpoint-63.svg: followpoint-0.svg
+followpoint-64.svg: followpoint-0.svg
+followpoint-65.svg: followpoint-0.svg
+followpoint-66.svg: followpoint-0.svg
+followpoint-67.svg: followpoint-0.svg
+followpoint-68.svg: followpoint-0.svg
+followpoint-69.svg: followpoint-0.svg
+followpoint-70.svg: followpoint-0.svg
+followpoint-71.svg: followpoint-0.svg
 
 hit0-0.svg: animations/animate_miss.py animations/hit0.svg
 	animations/animate_miss.py animations/hit0.svg .
@@ -440,6 +589,7 @@ slidertickmiss-29.svg: slidertickmiss-0.svg
 
 .PHONY: clean
 clean:
+	-rm followpoint-*.svg
 	-rm hit0-*.svg
 	-rm hit50-*.svg
 	-rm hit100-*.svg
