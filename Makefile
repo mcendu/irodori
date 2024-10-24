@@ -4,7 +4,7 @@ VERSION=0.2
 
 INKSCAPE=inkscape
 
-OBJECTS=\
+IMAGES_SD=\
 	approachcircle.png \
 	cursor.png \
 	cursormiddle.png \
@@ -300,26 +300,28 @@ OBJECTS=\
 	slidertickmiss-28.png \
 	slidertickmiss-29.png
 
+IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
+
+OBJECTS=$(IMAGES_SD) $(IMAGES_HD)
+
 RESOURCES=\
 	skin.ini
 
 .PHONY: all
 all: irodori-$(VERSION).osk
 
+.SUFFIXES:
 .SUFFIXES: .svg .png @2x.png
 
 .svg.png:
 	$(INKSCAPE) --export-type=png --export-filename=$@ $<
 
 .svg@2x.png:
-	$(INKSCAPE) --export-type=png \
-		--export-dpi=192 --export-filename=$@ $<
+	$(INKSCAPE) --export-type=png --export-dpi=192 --export-filename=$@ $<
 
-irodori-$(VERSION).osk: $(OBJECTS) $(OBJECTS:.png=@2x.png) $(RESOURCES)
-	zip -r $@ \
-		$(OBJECTS) \
-		$(OBJECTS:.png=@2x.png) \
-		$(RESOURCES)
+irodori-$(VERSION).osk: $(OBJECTS) $(RESOURCES)
+	-rm $@
+	zip -r $@ $(RESOURCES) $(OBJECTS)
 
 followpoint-0.svg: animations/followpoint.py animations/followpoint.svg
 	animations/followpoint.py animations/followpoint.svg .
@@ -597,5 +599,4 @@ clean:
 	-rm sliderendmiss-*.svg
 	-rm slidertickmiss-*.svg
 	-rm $(OBJECTS)
-	-rm $(OBJECTS:.png=@2x.png)
 	-rm *.osk

@@ -46,7 +46,7 @@ def opacity(frame: float) -> float:
 
 def scale(frame: float) -> float:
     """The scale animation."""
-    curve = -(1 / 72) * pow(frame - 6, 2) + 0.5
+    curve = -(1 / 144) * pow(frame - 6, 2) + 1.25
     return max(1.0, curve)
 
 
