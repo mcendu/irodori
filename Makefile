@@ -298,7 +298,11 @@ IMAGES_SD=\
 	slidertickmiss-26.png \
 	slidertickmiss-27.png \
 	slidertickmiss-28.png \
-	slidertickmiss-29.png
+	slidertickmiss-29.png \
+	spinner-approachcircle.png \
+	spinner-background.png \
+	spinner-circle.png \
+	spinner-metre.png
 
 IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 
