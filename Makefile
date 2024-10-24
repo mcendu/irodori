@@ -309,7 +309,10 @@ IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 OBJECTS=$(IMAGES_SD) $(IMAGES_HD)
 
 RESOURCES=\
-	skin.ini
+	skin.ini \
+	skininfo.json \
+	MainHUDComponents.json \
+	Playfield.json
 
 .PHONY: all
 all: irodori-$(VERSION).osk
