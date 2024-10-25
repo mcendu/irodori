@@ -315,7 +315,8 @@ RESOURCES=\
 	skin.ini \
 	skininfo.json \
 	MainHUDComponents.json \
-	Playfield.json
+	Playfield.json \
+	LICENSE
 
 .PHONY: all
 all: irodori-$(VERSION).osk
