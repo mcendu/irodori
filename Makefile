@@ -302,7 +302,10 @@ IMAGES_SD=\
 	spinner-approachcircle.png \
 	spinner-background.png \
 	spinner-circle.png \
-	spinner-metre.png
+	spinner-clear.png \
+	spinner-metre.png \
+	spinner-rpm.png \
+	spinner-spin.png
 
 IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 

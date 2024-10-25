@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="278"
+   height="54"
+   viewBox="0 0 278 54"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="spinner-rpm.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1"
+     inkscape:cx="92"
+     inkscape:cy="-39.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g2-0" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient76-1"
+       inkscape:label="Great">
+      <stop
+         style="stop-color:#ffc5d7;stop-opacity:1;"
+         offset="0"
+         id="stop76" />
+      <stop
+         style="stop-color:#e67da4;stop-opacity:1;"
+         offset="1"
+         id="stop77" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient76-1"
+       id="linearGradient2"
+       x1="736"
+       y1="544"
+       x2="736"
+       y2="594"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-120.00002,-324)">
+    <g
+       id="g2"
+       inkscape:label="RPM"
+       transform="matrix(0.26458333,0,0,0.26458333,-126.73541,-68.791671)">
+      <g
+         id="g2-0"
+         inkscape:label="RPM"
+         transform="matrix(3.7795276,0,0,3.7795276,-1841.6299,-563.93699)">
+        <rect
+           style="display:inline;fill:url(#linearGradient2);fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke fill markers"
+           id="rect7"
+           width="274"
+           height="50"
+           x="736"
+           y="544"
+           rx="8"
+           inkscape:label="Background" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'Yuji Mai';-inkscape-font-specification:'Yuji Mai';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:start;text-anchor:start;fill:#f1f1f1;fill-opacity:1;stroke:#000000;stroke-width:6.00000001;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+           x="742"
+           y="584"
+           id="text14"
+           inkscape:label="Label"><tspan
+             sodipodi:role="line"
+             id="tspan14"
+             x="742"
+             y="584">速度</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
