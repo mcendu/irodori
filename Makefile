@@ -330,7 +330,10 @@ all: irodori-$(VERSION).osk
 .svg@2x.png:
 	$(INKSCAPE) --export-type=png --export-dpi=192 --export-filename=$@ $<
 
-irodori-$(VERSION).osk: $(OBJECTS) $(RESOURCES)
+irodori-$(VERSION).osk: tools $(OBJECTS) $(RESOURCES)
+	if [ x$(DEFRINGE) = x1 ]; then \
+		for i in $(OBJECTS); do tools/defringe $$i $$i; done; \
+	fi
 	-rm $@
 	zip -r $@ $(RESOURCES) $(OBJECTS)
 
@@ -600,8 +603,13 @@ slidertickmiss-27.svg: slidertickmiss-0.svg
 slidertickmiss-28.svg: slidertickmiss-0.svg
 slidertickmiss-29.svg: slidertickmiss-0.svg
 
+.PHONY: tools
+tools:
+	cd tools && $(MAKE) DEFRINGE=$(DEFRINGE)
+
 .PHONY: clean
 clean:
+	-cd tools && $(MAKE) clean
 	-rm followpoint-*.svg
 	-rm hit0-*.svg
 	-rm hit50-*.svg
