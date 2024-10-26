@@ -58,8 +58,8 @@ int main(int argc, char **argv) {
   image.warning_or_error = 0;
 
   image.format = PNG_FORMAT_RGBA;
-  unsigned int width = width;
-  unsigned int height = height;
+  unsigned int width = image.width;
+  unsigned int height = image.height;
   unsigned char(*data)[4] = malloc(PNG_IMAGE_SIZE(image));
 
   if (!data) {
