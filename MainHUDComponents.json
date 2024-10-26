@@ -62,7 +62,7 @@
       {
         "Type": "osu.Game.Skinning.LegacyScoreCounter, osu.Game, Version=2024.1009.1.0, Culture=neutral, PublicKeyToken=null",
         "Position": {
-          "x": 170.0,
+          "x": 30.0,
           "y": 20.0
         },
         "Rotation": 0.0,
@@ -73,7 +73,7 @@
         "Width": null,
         "Height": null,
         "Anchor": 9,
-        "Origin": 33,
+        "Origin": 9,
         "UsesFixedAnchor": true,
         "Settings": {},
         "Children": []
