@@ -350,7 +350,7 @@ RESOURCES=\
 
 .PHONY: all
 all:
-	@export DEFRINGE=$(DEFRINGE) && \
+	@DEFRINGE=$(DEFRINGE) \
 		$(MAKE) tools && \
 		$(MAKE) irodori-$(VERSION).osk
 
