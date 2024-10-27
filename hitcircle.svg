@@ -46,19 +46,16 @@
          inkscape:label="Body"
          transform="translate(65,65)">
         <circle
-           style="fill:#111111;fill-opacity:0.60000002;stroke:none;stroke-width:6;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+           style="fill:#111111;fill-opacity:0.6;stroke:none;stroke-width:6;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
            id="path149"
            cx="0"
            cy="0"
            inkscape:label="Center"
-           r="41" />
-        <circle
-           style="fill:none;fill-opacity:1;stroke:#e2e2e2;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-           id="path2"
-           cx="0"
-           cy="0"
-           r="45"
-           inkscape:label="Inner rim" />
+           r="40" />
+        <path
+           d="M 0,-59 A 59,59 0 0 0 -59,0 59,59 0 0 0 0,59 59,59 0 0 0 59,0 59,59 0 0 0 0,-59 Z m 0,19 A 40,40 0 0 1 40,0 40,40 0 0 1 0,40 40,40 0 0 1 -40,0 40,40 0 0 1 0,-40 Z"
+           style="fill:#e2e2e2;stroke-width:6;stroke-linecap:round;stroke-linejoin:round"
+           id="path3" />
       </g>
     </g>
   </g>
