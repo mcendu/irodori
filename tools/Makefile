@@ -1,5 +1,3 @@
-.POSIX:
-
 all:
 	@if [ x$(DEFRINGE) = x1 ]; then $(MAKE) defringe; fi
 
