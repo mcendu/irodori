@@ -7,7 +7,7 @@ all:
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 defringe: defringe.o defringe.h
-	$(CC) $(CFLAGS) -o $@ defringe.o -lpng
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ defringe.o -lpng
 
 clean:
 	-rm defringe
