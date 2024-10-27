@@ -4,11 +4,7 @@ VERSION=0.3
 
 INKSCAPE=inkscape
 
-IMAGES_SD=\
-	approachcircle.png \
-	cursor.png \
-	cursormiddle.png \
-	cursortrail.png \
+IMAGES_FOLLOWPOINT=\
 	followpoint-0.png \
 	followpoint-1.png \
 	followpoint-2.png \
@@ -80,8 +76,9 @@ IMAGES_SD=\
 	followpoint-68.png \
 	followpoint-69.png \
 	followpoint-70.png \
-	followpoint-71.png \
-	hit0.png \
+	followpoint-71.png
+
+IMAGES_HIT0=\
 	hit0-0.png \
 	hit0-1.png \
 	hit0-2.png \
@@ -111,8 +108,9 @@ IMAGES_SD=\
 	hit0-26.png \
 	hit0-27.png \
 	hit0-28.png \
-	hit0-29.png \
-	hit50.png \
+	hit0-29.png
+
+IMAGES_HIT50=\
 	hit50-0.png \
 	hit50-1.png \
 	hit50-2.png \
@@ -142,8 +140,9 @@ IMAGES_SD=\
 	hit50-26.png \
 	hit50-27.png \
 	hit50-28.png \
-	hit50-29.png \
-	hit100.png \
+	hit50-29.png
+
+IMAGES_HIT100=\
 	hit100-0.png \
 	hit100-1.png \
 	hit100-2.png \
@@ -173,8 +172,9 @@ IMAGES_SD=\
 	hit100-26.png \
 	hit100-27.png \
 	hit100-28.png \
-	hit100-29.png \
-	hit100k.png \
+	hit100-29.png
+
+IMAGES_HIT100K=\
 	hit100k-0.png \
 	hit100k-1.png \
 	hit100k-2.png \
@@ -205,6 +205,85 @@ IMAGES_SD=\
 	hit100k-27.png \
 	hit100k-28.png \
 	hit100k-29.png \
+
+IMAGES_SLIDERENDMISS=\
+	sliderendmiss-0.png \
+	sliderendmiss-1.png \
+	sliderendmiss-2.png \
+	sliderendmiss-3.png \
+	sliderendmiss-4.png \
+	sliderendmiss-5.png \
+	sliderendmiss-6.png \
+	sliderendmiss-7.png \
+	sliderendmiss-8.png \
+	sliderendmiss-9.png \
+	sliderendmiss-10.png \
+	sliderendmiss-11.png \
+	sliderendmiss-12.png \
+	sliderendmiss-13.png \
+	sliderendmiss-14.png \
+	sliderendmiss-15.png \
+	sliderendmiss-16.png \
+	sliderendmiss-17.png \
+	sliderendmiss-18.png \
+	sliderendmiss-19.png \
+	sliderendmiss-20.png \
+	sliderendmiss-21.png \
+	sliderendmiss-22.png \
+	sliderendmiss-23.png \
+	sliderendmiss-24.png \
+	sliderendmiss-25.png \
+	sliderendmiss-26.png \
+	sliderendmiss-27.png \
+	sliderendmiss-28.png \
+	sliderendmiss-29.png
+
+IMAGES_SLIDERTICKMISS=\
+	slidertickmiss-0.png \
+	slidertickmiss-1.png \
+	slidertickmiss-2.png \
+	slidertickmiss-3.png \
+	slidertickmiss-4.png \
+	slidertickmiss-5.png \
+	slidertickmiss-6.png \
+	slidertickmiss-7.png \
+	slidertickmiss-8.png \
+	slidertickmiss-9.png \
+	slidertickmiss-10.png \
+	slidertickmiss-11.png \
+	slidertickmiss-12.png \
+	slidertickmiss-13.png \
+	slidertickmiss-14.png \
+	slidertickmiss-15.png \
+	slidertickmiss-16.png \
+	slidertickmiss-17.png \
+	slidertickmiss-18.png \
+	slidertickmiss-19.png \
+	slidertickmiss-20.png \
+	slidertickmiss-21.png \
+	slidertickmiss-22.png \
+	slidertickmiss-23.png \
+	slidertickmiss-24.png \
+	slidertickmiss-25.png \
+	slidertickmiss-26.png \
+	slidertickmiss-27.png \
+	slidertickmiss-28.png \
+	slidertickmiss-29.png
+
+IMAGES_SD=\
+	approachcircle.png \
+	cursor.png \
+	cursormiddle.png \
+	cursortrail.png \
+	$(IMAGES_FOLLOWPOINT) \
+	hit0.png \
+	$(IMAGES_HIT0) \
+	hit50.png \
+	$(IMAGES_HIT50) \
+	hit100.png \
+	$(IMAGES_HIT100) \
+	hit100k.png \
+	$(IMAGES_HIT100K) \
 	hit300.png \
 	hit300-0.png \
 	hit300k.png \
@@ -237,68 +316,10 @@ IMAGES_SD=\
 	sliderb.png \
 	sliderendcircle.png \
 	sliderendcircleoverlay.png \
-	sliderendmiss-0.png \
-	sliderendmiss-1.png \
-	sliderendmiss-2.png \
-	sliderendmiss-3.png \
-	sliderendmiss-4.png \
-	sliderendmiss-5.png \
-	sliderendmiss-6.png \
-	sliderendmiss-7.png \
-	sliderendmiss-8.png \
-	sliderendmiss-9.png \
-	sliderendmiss-10.png \
-	sliderendmiss-11.png \
-	sliderendmiss-12.png \
-	sliderendmiss-13.png \
-	sliderendmiss-14.png \
-	sliderendmiss-15.png \
-	sliderendmiss-16.png \
-	sliderendmiss-17.png \
-	sliderendmiss-18.png \
-	sliderendmiss-19.png \
-	sliderendmiss-20.png \
-	sliderendmiss-21.png \
-	sliderendmiss-22.png \
-	sliderendmiss-23.png \
-	sliderendmiss-24.png \
-	sliderendmiss-25.png \
-	sliderendmiss-26.png \
-	sliderendmiss-27.png \
-	sliderendmiss-28.png \
-	sliderendmiss-29.png \
+	$(IMAGES_SLIDERENDMISS) \
 	sliderfollowcircle.png \
 	sliderscorepoint.png \
-	slidertickmiss-0.png \
-	slidertickmiss-1.png \
-	slidertickmiss-2.png \
-	slidertickmiss-3.png \
-	slidertickmiss-4.png \
-	slidertickmiss-5.png \
-	slidertickmiss-6.png \
-	slidertickmiss-7.png \
-	slidertickmiss-8.png \
-	slidertickmiss-9.png \
-	slidertickmiss-10.png \
-	slidertickmiss-11.png \
-	slidertickmiss-12.png \
-	slidertickmiss-13.png \
-	slidertickmiss-14.png \
-	slidertickmiss-15.png \
-	slidertickmiss-16.png \
-	slidertickmiss-17.png \
-	slidertickmiss-18.png \
-	slidertickmiss-19.png \
-	slidertickmiss-20.png \
-	slidertickmiss-21.png \
-	slidertickmiss-22.png \
-	slidertickmiss-23.png \
-	slidertickmiss-24.png \
-	slidertickmiss-25.png \
-	slidertickmiss-26.png \
-	slidertickmiss-27.png \
-	slidertickmiss-28.png \
-	slidertickmiss-29.png \
+	$(IMAGES_SLIDERTICKMISS) \
 	spinner-approachcircle.png \
 	spinner-background.png \
 	spinner-circle.png \
@@ -311,6 +332,15 @@ IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 
 OBJECTS=$(IMAGES_SD) $(IMAGES_HD)
 
+ANIMATIONS=\
+	followpoint \
+	hit0 \
+	hit50 \
+	hit100 \
+	hit100k \
+	sliderendmiss \
+	slidertickmiss
+
 RESOURCES=\
 	skin.ini \
 	skininfo.json \
@@ -319,303 +349,81 @@ RESOURCES=\
 	LICENSE
 
 .PHONY: all
-all: irodori-$(VERSION).osk
+all:
+	@export DEFRINGE=$(DEFRINGE) && \
+		$(MAKE) tools && \
+		$(MAKE) irodori-$(VERSION).osk
 
 .SUFFIXES:
 .SUFFIXES: .svg .png @2x.png
 
 .svg.png:
 	$(INKSCAPE) --export-type=png --export-filename=$@ $<
+	@if [ x$(DEFRINGE) = x1 ]; then \
+		echo tools/defringe $@ $@; \
+		tools/defringe $@ $@; \
+	fi
 
 .svg@2x.png:
 	$(INKSCAPE) --export-type=png --export-dpi=192 --export-filename=$@ $<
-
-irodori-$(VERSION).osk: tools $(OBJECTS) $(RESOURCES)
-	if [ x$(DEFRINGE) = x1 ]; then \
-		for i in $(OBJECTS); do tools/defringe $$i $$i; done; \
+	@if [ x$(DEFRINGE) = x1 ]; then \
+		echo tools/defringe $@ $@; \
+		tools/defringe $@ $@; \
 	fi
-	-rm $@
+
+irodori-$(VERSION).osk: $(OBJECTS) $(RESOURCES)
+	if [ -e $@ ]; then rm $@; fi
 	zip -r $@ $(RESOURCES) $(OBJECTS)
 
-followpoint-0.svg: animations/followpoint.py animations/followpoint.svg
+followpoint: animations/followpoint.py animations/followpoint.svg
 	animations/followpoint.py animations/followpoint.svg .
-followpoint-1.svg: followpoint-0.svg
-followpoint-2.svg: followpoint-0.svg
-followpoint-3.svg: followpoint-0.svg
-followpoint-4.svg: followpoint-0.svg
-followpoint-5.svg: followpoint-0.svg
-followpoint-6.svg: followpoint-0.svg
-followpoint-7.svg: followpoint-0.svg
-followpoint-8.svg: followpoint-0.svg
-followpoint-9.svg: followpoint-0.svg
-followpoint-10.svg: followpoint-0.svg
-followpoint-11.svg: followpoint-0.svg
-followpoint-12.svg: followpoint-0.svg
-followpoint-13.svg: followpoint-0.svg
-followpoint-14.svg: followpoint-0.svg
-followpoint-15.svg: followpoint-0.svg
-followpoint-16.svg: followpoint-0.svg
-followpoint-17.svg: followpoint-0.svg
-followpoint-18.svg: followpoint-0.svg
-followpoint-19.svg: followpoint-0.svg
-followpoint-20.svg: followpoint-0.svg
-followpoint-21.svg: followpoint-0.svg
-followpoint-22.svg: followpoint-0.svg
-followpoint-23.svg: followpoint-0.svg
-followpoint-24.svg: followpoint-0.svg
-followpoint-25.svg: followpoint-0.svg
-followpoint-26.svg: followpoint-0.svg
-followpoint-27.svg: followpoint-0.svg
-followpoint-28.svg: followpoint-0.svg
-followpoint-29.svg: followpoint-0.svg
-followpoint-30.svg: followpoint-0.svg
-followpoint-31.svg: followpoint-0.svg
-followpoint-32.svg: followpoint-0.svg
-followpoint-33.svg: followpoint-0.svg
-followpoint-34.svg: followpoint-0.svg
-followpoint-35.svg: followpoint-0.svg
-followpoint-36.svg: followpoint-0.svg
-followpoint-37.svg: followpoint-0.svg
-followpoint-38.svg: followpoint-0.svg
-followpoint-39.svg: followpoint-0.svg
-followpoint-40.svg: followpoint-0.svg
-followpoint-41.svg: followpoint-0.svg
-followpoint-42.svg: followpoint-0.svg
-followpoint-43.svg: followpoint-0.svg
-followpoint-44.svg: followpoint-0.svg
-followpoint-45.svg: followpoint-0.svg
-followpoint-46.svg: followpoint-0.svg
-followpoint-47.svg: followpoint-0.svg
-followpoint-48.svg: followpoint-0.svg
-followpoint-49.svg: followpoint-0.svg
-followpoint-50.svg: followpoint-0.svg
-followpoint-51.svg: followpoint-0.svg
-followpoint-52.svg: followpoint-0.svg
-followpoint-53.svg: followpoint-0.svg
-followpoint-54.svg: followpoint-0.svg
-followpoint-55.svg: followpoint-0.svg
-followpoint-56.svg: followpoint-0.svg
-followpoint-57.svg: followpoint-0.svg
-followpoint-58.svg: followpoint-0.svg
-followpoint-59.svg: followpoint-0.svg
-followpoint-60.svg: followpoint-0.svg
-followpoint-61.svg: followpoint-0.svg
-followpoint-62.svg: followpoint-0.svg
-followpoint-63.svg: followpoint-0.svg
-followpoint-64.svg: followpoint-0.svg
-followpoint-65.svg: followpoint-0.svg
-followpoint-66.svg: followpoint-0.svg
-followpoint-67.svg: followpoint-0.svg
-followpoint-68.svg: followpoint-0.svg
-followpoint-69.svg: followpoint-0.svg
-followpoint-70.svg: followpoint-0.svg
-followpoint-71.svg: followpoint-0.svg
+	touch followpoint
+$(IMAGES_FOLLOWPOINT:.png=.svg): followpoint
 
-hit0-0.svg: animations/animate_miss.py animations/hit0.svg
+hit0: animations/animate_miss.py animations/hit0.svg
 	animations/animate_miss.py animations/hit0.svg .
-hit0-1.svg: hit0-0.svg
-hit0-2.svg: hit0-0.svg
-hit0-3.svg: hit0-0.svg
-hit0-4.svg: hit0-0.svg
-hit0-5.svg: hit0-0.svg
-hit0-6.svg: hit0-0.svg
-hit0-7.svg: hit0-0.svg
-hit0-8.svg: hit0-0.svg
-hit0-9.svg: hit0-0.svg
-hit0-10.svg: hit0-0.svg
-hit0-11.svg: hit0-0.svg
-hit0-12.svg: hit0-0.svg
-hit0-13.svg: hit0-0.svg
-hit0-14.svg: hit0-0.svg
-hit0-15.svg: hit0-0.svg
-hit0-16.svg: hit0-0.svg
-hit0-17.svg: hit0-0.svg
-hit0-18.svg: hit0-0.svg
-hit0-19.svg: hit0-0.svg
-hit0-20.svg: hit0-0.svg
-hit0-21.svg: hit0-0.svg
-hit0-22.svg: hit0-0.svg
-hit0-23.svg: hit0-0.svg
-hit0-24.svg: hit0-0.svg
-hit0-25.svg: hit0-0.svg
-hit0-26.svg: hit0-0.svg
-hit0-27.svg: hit0-0.svg
-hit0-28.svg: hit0-0.svg
-hit0-29.svg: hit0-0.svg
+	touch hit0
+$(IMAGES_HIT0:.png=.svg): hit0
 
-hit50-0.svg: animations/animate_hit.py animations/hit50.svg
+hit50: animations/animate_hit.py animations/hit50.svg
 	animations/animate_hit.py animations/hit50.svg .
-hit50-1.svg: hit50-0.svg
-hit50-2.svg: hit50-0.svg
-hit50-3.svg: hit50-0.svg
-hit50-4.svg: hit50-0.svg
-hit50-5.svg: hit50-0.svg
-hit50-6.svg: hit50-0.svg
-hit50-7.svg: hit50-0.svg
-hit50-8.svg: hit50-0.svg
-hit50-9.svg: hit50-0.svg
-hit50-10.svg: hit50-0.svg
-hit50-11.svg: hit50-0.svg
-hit50-12.svg: hit50-0.svg
-hit50-13.svg: hit50-0.svg
-hit50-14.svg: hit50-0.svg
-hit50-15.svg: hit50-0.svg
-hit50-16.svg: hit50-0.svg
-hit50-17.svg: hit50-0.svg
-hit50-18.svg: hit50-0.svg
-hit50-19.svg: hit50-0.svg
-hit50-20.svg: hit50-0.svg
-hit50-21.svg: hit50-0.svg
-hit50-22.svg: hit50-0.svg
-hit50-23.svg: hit50-0.svg
-hit50-24.svg: hit50-0.svg
-hit50-25.svg: hit50-0.svg
-hit50-26.svg: hit50-0.svg
-hit50-27.svg: hit50-0.svg
-hit50-28.svg: hit50-0.svg
-hit50-29.svg: hit50-0.svg
+	touch hit50
+$(IMAGES_HIT50:.png=.svg): hit50
 
-hit100-0.svg: animations/animate_hit.py animations/hit100.svg
+hit100: animations/animate_hit.py animations/hit100.svg
 	animations/animate_hit.py animations/hit100.svg .
-hit100-1.svg: hit100-0.svg
-hit100-2.svg: hit100-0.svg
-hit100-3.svg: hit100-0.svg
-hit100-4.svg: hit100-0.svg
-hit100-5.svg: hit100-0.svg
-hit100-6.svg: hit100-0.svg
-hit100-7.svg: hit100-0.svg
-hit100-8.svg: hit100-0.svg
-hit100-9.svg: hit100-0.svg
-hit100-10.svg: hit100-0.svg
-hit100-11.svg: hit100-0.svg
-hit100-12.svg: hit100-0.svg
-hit100-13.svg: hit100-0.svg
-hit100-14.svg: hit100-0.svg
-hit100-15.svg: hit100-0.svg
-hit100-16.svg: hit100-0.svg
-hit100-17.svg: hit100-0.svg
-hit100-18.svg: hit100-0.svg
-hit100-19.svg: hit100-0.svg
-hit100-20.svg: hit100-0.svg
-hit100-21.svg: hit100-0.svg
-hit100-22.svg: hit100-0.svg
-hit100-23.svg: hit100-0.svg
-hit100-24.svg: hit100-0.svg
-hit100-25.svg: hit100-0.svg
-hit100-26.svg: hit100-0.svg
-hit100-27.svg: hit100-0.svg
-hit100-28.svg: hit100-0.svg
-hit100-29.svg: hit100-0.svg
+	touch hit100
+$(IMAGES_HIT100:.png=.svg): hit100
 
-hit100k-0.svg: animations/animate_hit.py animations/hit100k.svg
+hit100k: animations/animate_hit.py animations/hit100k.svg
 	animations/animate_hit.py animations/hit100k.svg .
-hit100k-1.svg: hit100k-0.svg
-hit100k-2.svg: hit100k-0.svg
-hit100k-3.svg: hit100k-0.svg
-hit100k-4.svg: hit100k-0.svg
-hit100k-5.svg: hit100k-0.svg
-hit100k-6.svg: hit100k-0.svg
-hit100k-7.svg: hit100k-0.svg
-hit100k-8.svg: hit100k-0.svg
-hit100k-9.svg: hit100k-0.svg
-hit100k-10.svg: hit100k-0.svg
-hit100k-11.svg: hit100k-0.svg
-hit100k-12.svg: hit100k-0.svg
-hit100k-13.svg: hit100k-0.svg
-hit100k-14.svg: hit100k-0.svg
-hit100k-15.svg: hit100k-0.svg
-hit100k-16.svg: hit100k-0.svg
-hit100k-17.svg: hit100k-0.svg
-hit100k-18.svg: hit100k-0.svg
-hit100k-19.svg: hit100k-0.svg
-hit100k-20.svg: hit100k-0.svg
-hit100k-21.svg: hit100k-0.svg
-hit100k-22.svg: hit100k-0.svg
-hit100k-23.svg: hit100k-0.svg
-hit100k-24.svg: hit100k-0.svg
-hit100k-25.svg: hit100k-0.svg
-hit100k-26.svg: hit100k-0.svg
-hit100k-27.svg: hit100k-0.svg
-hit100k-28.svg: hit100k-0.svg
-hit100k-29.svg: hit100k-0.svg
+	touch hit100k
+$(IMAGES_HIT100K:.png=.svg): hit100k
 
-sliderendmiss-0.svg: animations/animate_miss.py animations/sliderendmiss.svg
+sliderendmiss: animations/animate_miss.py animations/sliderendmiss.svg
 	animations/animate_miss.py animations/sliderendmiss.svg .
-sliderendmiss-1.svg: sliderendmiss-0.svg
-sliderendmiss-2.svg: sliderendmiss-0.svg
-sliderendmiss-3.svg: sliderendmiss-0.svg
-sliderendmiss-4.svg: sliderendmiss-0.svg
-sliderendmiss-5.svg: sliderendmiss-0.svg
-sliderendmiss-6.svg: sliderendmiss-0.svg
-sliderendmiss-7.svg: sliderendmiss-0.svg
-sliderendmiss-8.svg: sliderendmiss-0.svg
-sliderendmiss-9.svg: sliderendmiss-0.svg
-sliderendmiss-10.svg: sliderendmiss-0.svg
-sliderendmiss-11.svg: sliderendmiss-0.svg
-sliderendmiss-12.svg: sliderendmiss-0.svg
-sliderendmiss-13.svg: sliderendmiss-0.svg
-sliderendmiss-14.svg: sliderendmiss-0.svg
-sliderendmiss-15.svg: sliderendmiss-0.svg
-sliderendmiss-16.svg: sliderendmiss-0.svg
-sliderendmiss-17.svg: sliderendmiss-0.svg
-sliderendmiss-18.svg: sliderendmiss-0.svg
-sliderendmiss-19.svg: sliderendmiss-0.svg
-sliderendmiss-20.svg: sliderendmiss-0.svg
-sliderendmiss-21.svg: sliderendmiss-0.svg
-sliderendmiss-22.svg: sliderendmiss-0.svg
-sliderendmiss-23.svg: sliderendmiss-0.svg
-sliderendmiss-24.svg: sliderendmiss-0.svg
-sliderendmiss-25.svg: sliderendmiss-0.svg
-sliderendmiss-26.svg: sliderendmiss-0.svg
-sliderendmiss-27.svg: sliderendmiss-0.svg
-sliderendmiss-28.svg: sliderendmiss-0.svg
-sliderendmiss-29.svg: sliderendmiss-0.svg
+	touch sliderendmiss
+$(IMAGES_SLIDERENDMISS:.png=.svg): sliderendmiss
 
-slidertickmiss-0.svg: animations/animate_miss.py animations/slidertickmiss.svg
+slidertickmiss: animations/animate_miss.py animations/slidertickmiss.svg
 	animations/animate_miss.py animations/slidertickmiss.svg .
-slidertickmiss-1.svg: slidertickmiss-0.svg
-slidertickmiss-2.svg: slidertickmiss-0.svg
-slidertickmiss-3.svg: slidertickmiss-0.svg
-slidertickmiss-4.svg: slidertickmiss-0.svg
-slidertickmiss-5.svg: slidertickmiss-0.svg
-slidertickmiss-6.svg: slidertickmiss-0.svg
-slidertickmiss-7.svg: slidertickmiss-0.svg
-slidertickmiss-8.svg: slidertickmiss-0.svg
-slidertickmiss-9.svg: slidertickmiss-0.svg
-slidertickmiss-10.svg: slidertickmiss-0.svg
-slidertickmiss-11.svg: slidertickmiss-0.svg
-slidertickmiss-12.svg: slidertickmiss-0.svg
-slidertickmiss-13.svg: slidertickmiss-0.svg
-slidertickmiss-14.svg: slidertickmiss-0.svg
-slidertickmiss-15.svg: slidertickmiss-0.svg
-slidertickmiss-16.svg: slidertickmiss-0.svg
-slidertickmiss-17.svg: slidertickmiss-0.svg
-slidertickmiss-18.svg: slidertickmiss-0.svg
-slidertickmiss-19.svg: slidertickmiss-0.svg
-slidertickmiss-20.svg: slidertickmiss-0.svg
-slidertickmiss-21.svg: slidertickmiss-0.svg
-slidertickmiss-22.svg: slidertickmiss-0.svg
-slidertickmiss-23.svg: slidertickmiss-0.svg
-slidertickmiss-24.svg: slidertickmiss-0.svg
-slidertickmiss-25.svg: slidertickmiss-0.svg
-slidertickmiss-26.svg: slidertickmiss-0.svg
-slidertickmiss-27.svg: slidertickmiss-0.svg
-slidertickmiss-28.svg: slidertickmiss-0.svg
-slidertickmiss-29.svg: slidertickmiss-0.svg
+	touch slidertickmiss
+$(IMAGES_SLIDERTICKMISS:.png=.svg): slidertickmiss
 
 .PHONY: tools
 tools:
-	cd tools && $(MAKE) DEFRINGE=$(DEFRINGE)
+	cd tools && $(MAKE)
 
 .PHONY: clean
 clean:
 	-cd tools && $(MAKE) clean
-	-rm followpoint-*.svg
-	-rm hit0-*.svg
-	-rm hit50-*.svg
-	-rm hit100-*.svg
-	-rm hit100k-*.svg
-	-rm sliderendmiss-*.svg
-	-rm slidertickmiss-*.svg
+	-rm $(ANIMATIONS)
+	-rm $(IMAGES_FOLLOWPOINT:.png=.svg)
+	-rm $(IMAGES_HIT0:.png=.svg)
+	-rm $(IMAGES_HIT50:.png=.svg)
+	-rm $(IMAGES_HIT100:.png=.svg)
+	-rm $(IMAGES_HIT100K:.png=.svg)
+	-rm $(IMAGES_SLIDERENDMISS:.png=.svg)
+	-rm $(IMAGES_SLIDERTICKMISS:.png=.svg)
 	-rm $(OBJECTS)
 	-rm *.osk
