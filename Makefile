@@ -291,6 +291,10 @@ IMAGES_SD=\
 	hitcircle.png \
 	hitcircleoverlay.png \
 	hitcircleselect.png \
+	pippidonclear.png \
+	pippidonfail.png \
+	pippidonidle.png \
+	pippidonkiai.png \
 	reversearrow.png \
 	scorebar-bg.png \
 	scorebar-colour.png \
@@ -324,7 +328,12 @@ IMAGES_SD=\
 	spinner-clear.png \
 	spinner-metre.png \
 	spinner-rpm.png \
-	spinner-spin.png
+	spinner-spin.png \
+	taiko/approachcircle.png \
+	taikobigcircle.png \
+	taikobigcircleoverlay.png \
+	taikohitcircle.png \
+	taikohitcircleoverlay.png
 
 IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 
