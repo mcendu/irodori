@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="256" height="64" version="1.1" viewBox="0 0 256 64" lang="ja"
+  xmlns="http://www.w3.org/2000/svg">
+  <style>
+  <![CDATA[
+    text { font-family: 'Potta One', sans-serif; }
+    [lang="zh-Hans"] {
+      font-family: 'Source Han Sans SC VF', 'Source Han Sans SC', 'Noto Sans CJK SC', sans-serif;
+      font-weight: bold;
+    }
+    #bg { fill: #dcd4bd; }
+    #title { font-size: 20px; fill: #000; stroke-width: 0; }
+    #player { stroke-width: 2.4px; fill: #e2e2e2; }
+  ]]>
+  </style>
+  <g stroke="#000" stroke-width="4" stroke-linejoin="round" text-align="center" text-anchor="middle"
+    font-size="24px" style="paint-order:stroke fill markers">
+    <rect id="bg" x="2" y="2" width="252" height="60" rx="16" />
+    <text id="title" x="128" y="24">太鼓の初心者</text>
+    <text id="player" x="128" y="53">Mocha</text>
+  </g>
+</svg>

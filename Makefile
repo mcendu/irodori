@@ -1,5 +1,11 @@
 VERSION=0.3
 
+PLAYER="Pippi"
+PLAYER_LANG="en"
+
+TAIKO_TITLE="太鼓の初心者"
+TAIKO_TITLE_LANG="ja"
+
 INKSCAPE=inkscape
 
 IMAGES_FOLLOWPOINT=\
@@ -330,7 +336,8 @@ IMAGES_SD=\
 	spinner-clear.png \
 	spinner-metre.png \
 	spinner-rpm.png \
-	spinner-spin.png
+	spinner-spin.png \
+	taiko-nameplate.png
 
 IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 
@@ -378,6 +385,14 @@ all:
 irodori-$(VERSION).osk: $(OBJECTS) $(RESOURCES)
 	if [ -e $@ ]; then rm $@; fi
 	zip -r $@ $(RESOURCES) $(OBJECTS)
+
+taiko-nameplate.svg: animations/taiko-nameplate.py animations/taiko-nameplate.svg
+	animations/taiko-nameplate.py \
+		--title $(TAIKO_TITLE) \
+		--title-lang $(TAIKO_TITLE_LANG) \
+		--player $(PLAYER) \
+		--player-lang $(PLAYER_LANG) \
+		animations/taiko-nameplate.svg $@
 
 followpoint: animations/followpoint.py animations/followpoint.svg
 	animations/followpoint.py animations/followpoint.svg .

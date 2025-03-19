@@ -2,7 +2,7 @@
 *.png
 *.osk
 
-# animations
+# generated assets
 followpoint
 followpoint-*.svg
 hit0
@@ -17,3 +17,4 @@ sliderendmiss
 sliderendmiss-*.svg
 slidertickmiss
 slidertickmiss-*.svg
+taiko-nameplate.svg
