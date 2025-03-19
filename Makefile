@@ -291,6 +291,12 @@ IMAGES_SD=\
 	hitcircle.png \
 	hitcircleoverlay.png \
 	hitcircleselect.png \
+	mania-hit0.png \
+	mania-hit50.png \
+	mania-hit100.png \
+	mania-hit200.png \
+	mania-hit300.png \
+	mania-hit300g.png \
 	reversearrow.png \
 	scorebar-bg.png \
 	scorebar-colour.png \

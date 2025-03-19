@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="64" version="1.1" viewBox="0 0 128 64" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#ffcd64" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+    stroke-width="4" font-family="'Potta One'" letter-spacing="0px" text-align="center"
+    text-anchor="middle" style="paint-order:stroke fill markers">
+    <text x="64" y="38" font-size="36px" letter-spacing="-2px" xml:space="preserve">優</text>
+    <text x="64" y="58" font-size="16px" xml:space="preserve">Great</text>
+  </g>
+</svg>
