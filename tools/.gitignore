@@ -1,3 +1,5 @@
 defringe
+taiko-explosion
 *.o
 *.exe
+*.spv

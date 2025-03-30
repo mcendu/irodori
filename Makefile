@@ -3,7 +3,7 @@ VERSION=0.3
 PLAYER="Pippi"
 PLAYER_LANG="en"
 
-TAIKO_TITLE="太鼓の初心者"
+TAIKO_TITLE="New Drummer"
 TAIKO_TITLE_LANG="ja"
 
 INKSCAPE=inkscape
@@ -274,6 +274,91 @@ IMAGES_SLIDERTICKMISS=\
 	slidertickmiss-28.png \
 	slidertickmiss-29.png
 
+IMAGES_TAIKO_HIT0=\
+	taiko-hit0-0.png \
+	taiko-hit0-1.png \
+	taiko-hit0-2.png \
+	taiko-hit0-3.png \
+	taiko-hit0-4.png \
+	taiko-hit0-5.png \
+	taiko-hit0-6.png \
+	taiko-hit0-7.png \
+	taiko-hit0-8.png \
+	taiko-hit0-9.png \
+	taiko-hit0-10.png \
+	taiko-hit0-11.png \
+	taiko-hit0-12.png \
+	taiko-hit0-13.png \
+	taiko-hit0-14.png
+
+IMAGES_TAIKO_HIT100=\
+	taiko-hit100-0.png \
+	taiko-hit100-1.png \
+	taiko-hit100-2.png \
+	taiko-hit100-3.png \
+	taiko-hit100-4.png \
+	taiko-hit100-5.png \
+	taiko-hit100-6.png \
+	taiko-hit100-7.png \
+	taiko-hit100-8.png \
+	taiko-hit100-9.png \
+	taiko-hit100-10.png \
+	taiko-hit100-11.png \
+	taiko-hit100-12.png \
+	taiko-hit100-13.png \
+	taiko-hit100-14.png
+
+IMAGES_TAIKO_HIT100K=\
+	taiko-hit100k-0.png \
+	taiko-hit100k-1.png \
+	taiko-hit100k-2.png \
+	taiko-hit100k-3.png \
+	taiko-hit100k-4.png \
+	taiko-hit100k-5.png \
+	taiko-hit100k-6.png \
+	taiko-hit100k-7.png \
+	taiko-hit100k-8.png \
+	taiko-hit100k-9.png \
+	taiko-hit100k-10.png \
+	taiko-hit100k-11.png \
+	taiko-hit100k-12.png \
+	taiko-hit100k-13.png \
+	taiko-hit100k-14.png
+
+IMAGES_TAIKO_HIT300=\
+	taiko-hit300-0.png \
+	taiko-hit300-1.png \
+	taiko-hit300-2.png \
+	taiko-hit300-3.png \
+	taiko-hit300-4.png \
+	taiko-hit300-5.png \
+	taiko-hit300-6.png \
+	taiko-hit300-7.png \
+	taiko-hit300-8.png \
+	taiko-hit300-9.png \
+	taiko-hit300-10.png \
+	taiko-hit300-11.png \
+	taiko-hit300-12.png \
+	taiko-hit300-13.png \
+	taiko-hit300-14.png
+
+IMAGES_TAIKO_HIT300K=\
+	taiko-hit300k-0.png \
+	taiko-hit300k-1.png \
+	taiko-hit300k-2.png \
+	taiko-hit300k-3.png \
+	taiko-hit300k-4.png \
+	taiko-hit300k-5.png \
+	taiko-hit300k-6.png \
+	taiko-hit300k-7.png \
+	taiko-hit300k-8.png \
+	taiko-hit300k-9.png \
+	taiko-hit300k-10.png \
+	taiko-hit300k-11.png \
+	taiko-hit300k-12.png \
+	taiko-hit300k-13.png \
+	taiko-hit300k-14.png
+
 IMAGES_SD=\
 	approachcircle.png \
 	cursor.png \
@@ -337,6 +422,11 @@ IMAGES_SD=\
 	spinner-metre.png \
 	spinner-rpm.png \
 	spinner-spin.png \
+	$(IMAGES_TAIKO_HIT0) \
+	$(IMAGES_TAIKO_HIT100) \
+	$(IMAGES_TAIKO_HIT100K) \
+	$(IMAGES_TAIKO_HIT300) \
+	$(IMAGES_TAIKO_HIT300K) \
 	taiko-nameplate.png
 
 IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
@@ -344,13 +434,25 @@ IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 OBJECTS=$(IMAGES_SD) $(IMAGES_HD)
 
 ANIMATIONS=\
+	animations/taiko-hitexplosion.png \
+	animations/taiko-hitexplosion@2x.png \
 	followpoint \
 	hit0 \
 	hit50 \
 	hit100 \
 	hit100k \
 	sliderendmiss \
-	slidertickmiss
+	slidertickmiss \
+	taiko-hit0 \
+	taiko-hit100 \
+	taiko-hit100k \
+	taiko-hit300 \
+	taiko-hit300k \
+	taiko-hit0@2x \
+	taiko-hit100@2x \
+	taiko-hit100k@2x \
+	taiko-hit300@2x \
+	taiko-hit300k@2x
 
 RESOURCES=\
 	skin.ini \
@@ -429,6 +531,56 @@ slidertickmiss: animations/animate_miss.py animations/slidertickmiss.svg
 	touch slidertickmiss
 $(IMAGES_SLIDERTICKMISS:.png=.svg): slidertickmiss
 
+taiko-hit0: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+	tools/taiko-explosion -t 4 -o taiko-hit0 animations/taiko-hitexplosion.png
+	touch taiko-hit0
+$(IMAGES_TAIKO_HIT0): taiko-hit0
+
+taiko-hit100: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+	tools/taiko-explosion -t 1 -o taiko-hit100 animations/taiko-hitexplosion.png
+	touch taiko-hit100
+$(IMAGES_TAIKO_HIT100): taiko-hit100
+
+taiko-hit100k: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+	tools/taiko-explosion -t 3 -o taiko-hit100k animations/taiko-hitexplosion.png
+	touch taiko-hit100k
+$(IMAGES_TAIKO_HIT100K): taiko-hit100k
+
+taiko-hit300: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+	tools/taiko-explosion -t 0 -o taiko-hit300 animations/taiko-hitexplosion.png
+	touch taiko-hit300
+$(IMAGES_TAIKO_HIT300): taiko-hit300
+
+taiko-hit300k: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+	tools/taiko-explosion -t 2 -o taiko-hit300k animations/taiko-hitexplosion.png
+	touch taiko-hit300k
+$(IMAGES_TAIKO_HIT300K): taiko-hit300k
+
+taiko-hit0@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+	tools/taiko-explosion --hd -t 4 -o taiko-hit0 animations/taiko-hitexplosion@2x.png
+	touch taiko-hit0@2x
+$(IMAGES_TAIKO_HIT0:.png=@2x.png): taiko-hit0@2x
+
+taiko-hit100@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+	tools/taiko-explosion --hd -t 1 -o taiko-hit100 animations/taiko-hitexplosion@2x.png
+	touch taiko-hit100@2x
+$(IMAGES_TAIKO_HIT100:.png=@2x.png): taiko-hit100@2x
+
+taiko-hit100k@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+	tools/taiko-explosion --hd -t 3 -o taiko-hit100k animations/taiko-hitexplosion@2x.png
+	touch taiko-hit100k@2x
+$(IMAGES_TAIKO_HIT100K:.png=@2x.png): taiko-hit100k@2x
+
+taiko-hit300@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+	tools/taiko-explosion --hd -t 0 -o taiko-hit300 animations/taiko-hitexplosion@2x.png
+	touch taiko-hit300@2x
+$(IMAGES_TAIKO_HIT300:.png=@2x.png): taiko-hit300@2x
+
+taiko-hit300k@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+	tools/taiko-explosion --hd -t 2 -o taiko-hit300k animations/taiko-hitexplosion@2x.png
+	touch taiko-hit300k@2x
+$(IMAGES_TAIKO_HIT300K:.png=@2x.png): taiko-hit300k@2x
+
 .PHONY: tools
 tools:
 	cd tools && $(MAKE)
@@ -444,5 +596,6 @@ clean:
 	-rm $(IMAGES_HIT100K:.png=.svg)
 	-rm $(IMAGES_SLIDERENDMISS:.png=.svg)
 	-rm $(IMAGES_SLIDERTICKMISS:.png=.svg)
+	-rm taiko-nameplate.svg
 	-rm $(OBJECTS)
 	-rm *.osk
