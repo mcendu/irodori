@@ -422,6 +422,11 @@ IMAGES_SD=\
 	spinner-metre.png \
 	spinner-rpm.png \
 	spinner-spin.png \
+	taiko-bar-left.png \
+	taiko-bar-right.png \
+	taiko-bar-right-glow.png \
+	taiko-drum-inner.png \
+	taiko-drum-outer.png \
 	$(IMAGES_TAIKO_HIT0) \
 	$(IMAGES_TAIKO_HIT100) \
 	$(IMAGES_TAIKO_HIT100K) \
