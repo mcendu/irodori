@@ -285,12 +285,7 @@ IMAGES_TAIKO_HIT0=\
 	taiko-hit0-6.png \
 	taiko-hit0-7.png \
 	taiko-hit0-8.png \
-	taiko-hit0-9.png \
-	taiko-hit0-10.png \
-	taiko-hit0-11.png \
-	taiko-hit0-12.png \
-	taiko-hit0-13.png \
-	taiko-hit0-14.png
+	taiko-hit0-9.png
 
 IMAGES_TAIKO_HIT100=\
 	taiko-hit100-0.png \
@@ -302,12 +297,7 @@ IMAGES_TAIKO_HIT100=\
 	taiko-hit100-6.png \
 	taiko-hit100-7.png \
 	taiko-hit100-8.png \
-	taiko-hit100-9.png \
-	taiko-hit100-10.png \
-	taiko-hit100-11.png \
-	taiko-hit100-12.png \
-	taiko-hit100-13.png \
-	taiko-hit100-14.png
+	taiko-hit100-9.png
 
 IMAGES_TAIKO_HIT100K=\
 	taiko-hit100k-0.png \
@@ -319,12 +309,7 @@ IMAGES_TAIKO_HIT100K=\
 	taiko-hit100k-6.png \
 	taiko-hit100k-7.png \
 	taiko-hit100k-8.png \
-	taiko-hit100k-9.png \
-	taiko-hit100k-10.png \
-	taiko-hit100k-11.png \
-	taiko-hit100k-12.png \
-	taiko-hit100k-13.png \
-	taiko-hit100k-14.png
+	taiko-hit100k-9.png
 
 IMAGES_TAIKO_HIT300=\
 	taiko-hit300-0.png \
@@ -336,12 +321,7 @@ IMAGES_TAIKO_HIT300=\
 	taiko-hit300-6.png \
 	taiko-hit300-7.png \
 	taiko-hit300-8.png \
-	taiko-hit300-9.png \
-	taiko-hit300-10.png \
-	taiko-hit300-11.png \
-	taiko-hit300-12.png \
-	taiko-hit300-13.png \
-	taiko-hit300-14.png
+	taiko-hit300-9.png
 
 IMAGES_TAIKO_HIT300K=\
 	taiko-hit300k-0.png \
@@ -353,12 +333,7 @@ IMAGES_TAIKO_HIT300K=\
 	taiko-hit300k-6.png \
 	taiko-hit300k-7.png \
 	taiko-hit300k-8.png \
-	taiko-hit300k-9.png \
-	taiko-hit300k-10.png \
-	taiko-hit300k-11.png \
-	taiko-hit300k-12.png \
-	taiko-hit300k-13.png \
-	taiko-hit300k-14.png
+	taiko-hit300k-9.png
 
 IMAGES_SD=\
 	approachcircle.png \

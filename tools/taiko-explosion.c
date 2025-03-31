@@ -591,10 +591,8 @@ fail:
 
 void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
                      double time) {
-#define EXPLOSION_TIME 9.0
-
   if (results[result].colorGradient == NULL || time < 0 ||
-      time >= EXPLOSION_TIME)
+      time >= 1.0)
     return;
 
   struct vertexUniforms vertexUniforms = {
@@ -613,7 +611,7 @@ void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
          12 * sizeof(float));
   memcpy(&fragmentUniforms.alphaGradientSpec, alphaGradient,
          12 * sizeof(float));
-  fragmentUniforms.time = (time / EXPLOSION_TIME) + (1.0f / 256.0f);
+  fragmentUniforms.time = (time / 1.0) + (1.0f / 256.0f);
 
   SDL_BindGPUGraphicsPipeline(render, explosionPipeline);
   SDL_BindGPUVertexBuffers(
@@ -636,14 +634,7 @@ void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
 void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
                 double time) {
   // animate
-  float alpha;
-  if (time <= 11) {
-    alpha = 1.0f;
-  } else if (time < 14) {
-    alpha = (time - 11) * (-1.0 / 3.0) + 1.0;
-  } else {
-    alpha = 0.0f;
-  }
+  float alpha = 1.0;
 
   double y;
   if (time <= 5) {
@@ -703,7 +694,7 @@ int process(double time, SDL_Surface *surface) {
                              },
                              1, NULL);
 
-  renderExplosion(renderCmds, render, time);
+  renderExplosion(renderCmds, render, (time + 0.25) / 9.0);
   renderText(renderCmds, render, time);
 
   SDL_EndGPURenderPass(render);
@@ -804,7 +795,7 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-#define ANIMATION_FRAMES 15
+#define ANIMATION_FRAMES 10
 
   for (int i = 0; i < ANIMATION_FRAMES; ++i) {
     process(i, output);
