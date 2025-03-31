@@ -42,15 +42,15 @@
        style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.999;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
        id="rect5"
        width="1024"
+       height="176"
+       x="0"
+       y="12" />
+    <rect
+       style="fill:#474747;fill-opacity:1;stroke:none;stroke-width:4.00681;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+       id="rect1"
+       width="1024"
        height="168"
        x="0"
        y="16" />
-    <rect
-       style="fill:#474747;stroke:none;stroke-width:4.00681;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers;fill-opacity:1"
-       id="rect1"
-       width="1024"
-       height="160.3125"
-       x="0"
-       y="20" />
   </g>
 </svg>

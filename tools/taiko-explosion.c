@@ -121,8 +121,8 @@ const SDL_FRect dimensions100 = {0.0f, 0.5f, 0.5f, 0.5f};
 const SDL_FRect textureArea300 = {0.5f, 0.5f, 0.125f, 0.125f};
 const SDL_FRect textureArea100 = {0.625f, 0.5f, 0.125f, 0.125f};
 const SDL_FRect textureAreaMiss = {0.5f, 0.625f, 0.25f, 0.125f};
-const SDL_FRect textRectHit = {-0.25f, -0.4375f, 0.5f, -0.5f};
-const SDL_FRect textRectMiss = {-0.5f, -0.4375f, 1.0f, -0.5f};
+const SDL_FRect textRectHit = {-0.25f, -0.40625f, 0.5f, -0.5f};
+const SDL_FRect textRectMiss = {-0.5f, -0.40625f, 1.0f, -0.5f};
 
 const struct resultData {
   const SDL_FRect *explosionTextureArea;
@@ -358,13 +358,11 @@ int init() {
                       {.format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
                        .blend_state =
                            {
-                               .src_color_blendfactor =
-                                   SDL_GPU_BLENDFACTOR_SRC_ALPHA,
+                               .src_color_blendfactor = SDL_GPU_BLENDFACTOR_ONE,
                                .dst_color_blendfactor =
                                    SDL_GPU_BLENDFACTOR_ONE_MINUS_SRC_ALPHA,
                                .color_blend_op = SDL_GPU_BLENDOP_ADD,
-                               .src_alpha_blendfactor =
-                                   SDL_GPU_BLENDFACTOR_SRC_ALPHA,
+                               .src_alpha_blendfactor = SDL_GPU_BLENDFACTOR_ONE,
                                .dst_alpha_blendfactor =
                                    SDL_GPU_BLENDFACTOR_ONE_MINUS_SRC_ALPHA,
                                .alpha_blend_op = SDL_GPU_BLENDOP_ADD,
@@ -649,7 +647,7 @@ void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
 
   double y;
   if (time <= 5) {
-    y =  (1.0 / 50.0) * pow(time, 2) - (1.0 / 10.0) * time;
+    y = (1.0 / 50.0) * pow(time, 2) - (1.0 / 10.0) * time;
   } else {
     y = 0.0;
   }

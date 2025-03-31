@@ -25,14 +25,14 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      inkscape:zoom="4"
-     inkscape:cx="98.5"
-     inkscape:cy="67.375"
+     inkscape:cx="66.25"
+     inkscape:cy="93.125"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="true">
     <inkscape:grid
        id="grid7"
@@ -72,8 +72,23 @@
        x1="0"
        y1="20"
        x2="0"
-       y2="180"
-       gradientUnits="userSpaceOnUse" />
+       y2="188"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,-4)" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter21"
+       x="0"
+       y="-0.016808469"
+       width="1.0657534"
+       height="1.03"
+       inkscape:auto-region="false">
+      <feGaussianBlur
+         stdDeviation="1 1"
+         result="blur"
+         id="feGaussianBlur21" />
+    </filter>
   </defs>
   <g
      inkscape:label="Background"
@@ -83,16 +98,16 @@
        style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.999;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
        id="rect5"
        width="180"
-       height="168"
+       height="176"
        x="0"
-       y="16" />
+       y="12" />
     <rect
        style="fill:url(#linearGradient7);fill-opacity:1;stroke:none;stroke-width:4.00681;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
        id="rect1"
        width="176"
-       height="160"
+       height="168"
        x="0"
-       y="20" />
+       y="16" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -103,13 +118,10 @@
        d="M 15,99.999995 C 15,89.999998 17,70.999996 24,52.999997 31,34.999998 53,9.9999995 90,9.9999995 c 37,0 59,24.9999985 66,42.9999975 7,17.999999 9,36.999999 9,46.999998 0,9.999995 -2,28.999995 -9,46.999995 -7,18 -29,43 -66,43 -37,0 -59,-25 -66,-43 -7,-18 -9,-37 -9,-46.999995 z"
        id="path33"
        sodipodi:nodetypes="zzzzszzzz" />
-    <ellipse
-       style="fill:#cec5c1;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-       id="path7-2"
-       cx="90"
-       cy="85"
-       ry="67.785713"
-       rx="73" />
+    <path
+       id="path18"
+       style="fill:#cec5c1;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 90,10 C 53.00012,10 30.99997,35.000055 24,53 20.59116,61.765578 18.38383,70.752871 17,78.837891 V 85 A 73,67.785713 0 0 0 90,152.78516 73,67.785713 0 0 0 163,85 V 78.837891 C 161.61617,70.752871 159.40884,61.765578 156,53 149.00003,35.000055 126.99988,10 90,10 Z" />
     <ellipse
        style="fill:#cec5c1;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
        id="path7"

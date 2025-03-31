@@ -7,6 +7,7 @@ TAIKO_TITLE="New Drummer"
 TAIKO_TITLE_LANG="ja"
 
 INKSCAPE=inkscape
+INKSCAPE_FLAGS=-b "\#000000" -y 0.0
 
 IMAGES_FOLLOWPOINT=\
 	followpoint-0.png \
@@ -476,14 +477,14 @@ all:
 .SUFFIXES: .svg .png @2x.png
 
 .svg.png:
-	$(INKSCAPE) --export-type=png --export-filename=$@ $<
+	$(INKSCAPE) $(INKSCAPE_FLAGS) --export-type=png --export-filename=$@ $<
 	@if [ x$(DEFRINGE) = x1 ]; then \
 		echo tools/defringe $@ $@; \
 		tools/defringe $@ $@; \
 	fi
 
 .svg@2x.png:
-	$(INKSCAPE) --export-type=png --export-dpi=192 --export-filename=$@ $<
+	$(INKSCAPE) $(INKSCAPE_FLAGS) --export-type=png --export-dpi=192 --export-filename=$@ $<
 	@if [ x$(DEFRINGE) = x1 ]; then \
 		echo tools/defringe $@ $@; \
 		tools/defringe $@ $@; \

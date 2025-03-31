@@ -11,7 +11,6 @@
    sodipodi:docname="taiko-drum-outer.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -25,14 +24,14 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      inkscape:zoom="4"
-     inkscape:cx="55.25"
-     inkscape:cy="112.375"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer3"
+     inkscape:cx="80.25"
+     inkscape:cy="110.25"
+     inkscape:window-width="1394"
+     inkscape:window-height="1032"
+     inkscape:window-x="169"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1"
      showgrid="true">
     <inkscape:grid
        id="grid7"
@@ -53,63 +52,38 @@
   </sodipodi:namedview>
   <defs
      id="defs1">
-    <linearGradient
-       id="linearGradient53"
-       inkscape:collect="always">
-      <stop
-         style="stop-color:#00b9ef;stop-opacity:0;"
-         offset="0"
-         id="stop54" />
-      <stop
-         style="stop-color:#00b9ef;stop-opacity:0;"
-         offset="0.80000001"
-         id="stop57" />
-      <stop
-         style="stop-color:#00b9ef;stop-opacity:0.80000001;"
-         offset="0.8486647"
-         id="stop59" />
-      <stop
-         style="stop-color:#00b9ef;stop-opacity:0.80000001;"
-         offset="0.89999998"
-         id="stop56" />
-      <stop
-         style="stop-color:#00b9ef;stop-opacity:0.80000001;"
-         offset="0.95252228"
-         id="stop60" />
-      <stop
-         style="stop-color:#00b9ef;stop-opacity:0;"
-         offset="1"
-         id="stop55" />
-    </linearGradient>
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient53"
-       id="radialGradient59"
-       cx="90"
-       cy="75"
-       fx="90"
-       fy="75"
-       r="80"
-       gradientTransform="matrix(0.9375,0,0,0.87053576,-84.375,9.7098189)"
-       gradientUnits="userSpaceOnUse" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Blur"
+       id="filter21"
+       x="0"
+       y="-0.016808469"
+       width="1.0657533"
+       height="1.03"
+       inkscape:auto-region="false">
+      <feGaussianBlur
+         stdDeviation="1 1"
+         result="blur"
+         id="feGaussianBlur21" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Blur"
+       id="filter21-8"
+       x="0"
+       y="-0.016808469"
+       width="1.0657533"
+       height="1.03"
+       inkscape:auto-region="false">
+      <feGaussianBlur
+         stdDeviation="1 1"
+         result="blur"
+         id="feGaussianBlur21-1" />
+    </filter>
   </defs>
-  <g
-     inkscape:groupmode="layer"
-     id="layer3"
-     inkscape:label="Hits"
-     style="display:inline">
-    <path
-       style="display:inline;mix-blend-mode:normal;fill:url(#radialGradient59);fill-opacity:1;stroke:none;stroke-width:10;stroke-linejoin:round;stroke-dasharray:none;paint-order:normal"
-       id="path7-28"
-       inkscape:label="rim"
-       sodipodi:type="arc"
-       sodipodi:cx="0"
-       sodipodi:cy="75"
-       sodipodi:rx="75"
-       sodipodi:ry="69.64286"
-       sodipodi:start="4.712389"
-       sodipodi:end="1.5707963"
-       sodipodi:arc-type="slice"
-       d="M 0,5.3571396 A 75,69.64286 0 0 1 75,75 75,69.64286 0 0 1 0,144.64286 V 75 Z" />
-  </g>
+  <path
+     d="m 0,9.9999995 c 36.9998,0 59.00005,25.0000905 66,43.0000005 3.40884,8.76556 5.61617,17.752887 7,25.83789 V 85 A 73,67.785713 0 0 1 0,152.78516 v -22.07032 a 60,55.714287 0 0 0 51.96094,-27.85742 60,55.714287 0 0 0 0,-55.714844 A 60,55.714287 0 0 0 0,19.285155 Z"
+     style="display:inline;fill:#00c9f0;fill-opacity:0.8;stroke:none;stroke-width:2;stroke-linejoin:round;filter:url(#filter21-8)"
+     id="path20"
+     inkscape:label="rim" />
 </svg>

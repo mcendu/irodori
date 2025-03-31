@@ -27,14 +27,14 @@
      showgrid="true"
      showguides="false"
      inkscape:zoom="1"
-     inkscape:cx="287"
-     inkscape:cy="176.5"
+     inkscape:cx="274"
+     inkscape:cy="220.5"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer4">
+     inkscape:current-layer="layer5">
     <inkscape:grid
        id="grid1"
        units="px"
@@ -484,35 +484,35 @@
      inkscape:label="Text">
     <text
        xml:space="preserve"
-       style="font-size:56px;font-family:'Potta One';-inkscape-font-specification:'Potta One';text-align:center;letter-spacing:0px;text-anchor:middle;fill:#ff9bbe;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       style="font-size:48px;font-family:'Potta One';-inkscape-font-specification:'Potta One';text-align:center;letter-spacing:0px;text-anchor:middle;fill:#ff9bbe;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
        x="288"
-       y="308"
+       y="306"
        id="text14410"><tspan
          sodipodi:role="line"
          id="tspan14410"
          x="288"
-         y="308">良</tspan></text>
+         y="306">良</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:56px;font-family:'Potta One';-inkscape-font-specification:'Potta One';text-align:center;letter-spacing:0px;text-anchor:middle;fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       style="font-size:48px;font-family:'Potta One';-inkscape-font-specification:'Potta One';text-align:center;letter-spacing:0px;text-anchor:middle;fill:#dddddd;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
        x="352"
-       y="308"
+       y="306"
        id="text14410-7"><tspan
          sodipodi:role="line"
          id="tspan14410-3"
          x="352"
-         y="308">可</tspan></text>
+         y="306">可</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:56px;font-family:'Potta One';-inkscape-font-specification:'Potta One';text-align:center;letter-spacing:0px;text-anchor:middle;fill:#006ff9;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       style="font-size:48px;font-family:'Potta One';-inkscape-font-specification:'Potta One';text-align:center;letter-spacing:0px;text-anchor:middle;fill:#006ff9;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
        x="320"
-       y="372"
+       y="370"
        id="text14410-1"><tspan
          sodipodi:role="line"
          id="tspan14410-0"
          x="320"
-         y="372"
-         style="font-size:56px;stroke-width:4;stroke-dasharray:none">不可</tspan></text>
+         y="370"
+         style="font-size:48px;stroke-width:4;stroke-dasharray:none">不可</tspan></text>
   </g>
   <script
      id="mesh_polyfill"
