@@ -398,9 +398,11 @@ IMAGES_SD=\
 	spinner-metre.png \
 	spinner-rpm.png \
 	spinner-spin.png \
+	spinner-warning.png \
 	taiko-bar-left.png \
 	taiko-bar-right.png \
 	taiko-bar-right-glow.png \
+	taiko-barline.png \
 	taiko-drum-inner.png \
 	taiko-drum-outer.png \
 	$(IMAGES_TAIKO_HIT0) \
@@ -408,7 +410,13 @@ IMAGES_SD=\
 	$(IMAGES_TAIKO_HIT100K) \
 	$(IMAGES_TAIKO_HIT300) \
 	$(IMAGES_TAIKO_HIT300K) \
-	taiko-nameplate.png
+	taiko-nameplate.png \
+	taiko-roll-end.png \
+	taiko-roll-middle.png \
+	taikobigcircle.png \
+	taikobigcircleoverlay.png \
+	taikohitcircle.png \
+	taikohitcircleoverlay.png
 
 IMAGES_HD=$(IMAGES_SD:.png=@2x.png)
 
