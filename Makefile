@@ -401,10 +401,15 @@ IMAGES_SD=\
 	taiko-barline.png \
 	taiko-drum-inner.png \
 	taiko-drum-outer.png \
+	taiko-hit0.png \
 	$(IMAGES_TAIKO_HIT0) \
+	taiko-hit100.png \
 	$(IMAGES_TAIKO_HIT100) \
+	taiko-hit100k.png \
 	$(IMAGES_TAIKO_HIT100K) \
+	taiko-hit300.png \
 	$(IMAGES_TAIKO_HIT300) \
+	taiko-hit300g.png \
 	$(IMAGES_TAIKO_HIT300K) \
 	taiko-nameplate.png \
 	taiko-roll-end.png \
