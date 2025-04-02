@@ -42,6 +42,6 @@ void main() {
   vec3 colorPos = colorGradientMatrix * basePos;
   vec3 alphaPos = alphaGradientMatrix * basePos;
 
-  color = vec4(texture(tex, colorPos.xy / colorPos.z).rgb,
-               baseAlpha * texture(tex, alphaPos.xy / alphaPos.z).r);
+  float alpha = baseAlpha * texture(tex, alphaPos.xy / alphaPos.z).r;
+  color = vec4(texture(tex, colorPos.xy / colorPos.z).rgb, alpha);
 }

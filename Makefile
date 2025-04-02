@@ -281,11 +281,7 @@ IMAGES_TAIKO_HIT0=\
 	taiko-hit0-2.png \
 	taiko-hit0-3.png \
 	taiko-hit0-4.png \
-	taiko-hit0-5.png \
-	taiko-hit0-6.png \
-	taiko-hit0-7.png \
-	taiko-hit0-8.png \
-	taiko-hit0-9.png
+	taiko-hit0-5.png
 
 IMAGES_TAIKO_HIT100=\
 	taiko-hit100-0.png \

@@ -125,36 +125,42 @@ const SDL_FRect textRectHit = {-0.25f, -0.40625f, 0.5f, -0.5f};
 const SDL_FRect textRectMiss = {-0.5f, -0.40625f, 1.0f, -0.5f};
 
 const struct resultData {
+  int frames;
   const SDL_FRect *explosionTextureArea;
   const SDL_FRect *textTextureArea;
   const SDL_FRect *textRect;
   const float (*colorGradient)[4];
 } results[] = {
     {
+        .frames = 10,
         .explosionTextureArea = &dimensions300,
         .colorGradient = colorGradient300,
         .textTextureArea = &textureArea300,
         .textRect = &textRectHit,
     },
     {
+        .frames = 10,
         .explosionTextureArea = &dimensions100,
         .colorGradient = colorGradient100,
         .textTextureArea = &textureArea100,
         .textRect = &textRectHit,
     },
     {
+        .frames = 10,
         .explosionTextureArea = &dimensions300g,
         .colorGradient = colorGradient300,
         .textTextureArea = &textureArea300,
         .textRect = &textRectHit,
     },
     {
+        .frames = 10,
         .explosionTextureArea = &dimensions300,
         .colorGradient = colorGradient100,
         .textTextureArea = &textureArea100,
         .textRect = &textRectHit,
     },
     {
+        .frames = 6,
         .explosionTextureArea = &dimensions300,
         .colorGradient = NULL,
         .textTextureArea = &textureAreaMiss,
@@ -795,9 +801,7 @@ int main(int argc, char **argv) {
     return EXIT_FAILURE;
   }
 
-#define ANIMATION_FRAMES 10
-
-  for (int i = 0; i < ANIMATION_FRAMES; ++i) {
+  for (int i = 0; i < results[result].frames; ++i) {
     process(i, output);
 
     int outputNameSize = snprintf(NULL, 0, format, outputBaseName, i) + 1;
