@@ -16,7 +16,7 @@ TAIKO_EXPLOSION_OBJ=\
 	textured.frag.spv
 
 taiko-explosion: $(TAIKO_EXPLOSION_OBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ taiko-explosion.o -lSDL3 -lSDL3_image
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ taiko-explosion.o -lm -lSDL3 -lSDL3_image
 
 defringe: defringe.o defringe.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ defringe.o -lpng
