@@ -360,6 +360,10 @@ IMAGES_SD=\
 	mania-hit200.png \
 	mania-hit300.png \
 	mania-hit300g.png \
+	pippidonclear.png \
+	pippidonfail.png \
+	pippidonidle.png \
+	pippidonkiai.png \
 	reversearrow.png \
 	scorebar-bg.png \
 	scorebar-colour.png \
