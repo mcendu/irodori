@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="147"
-   height="56"
-   viewBox="0 0 147 56"
+   width="220.67218"
+   height="83.77594"
+   viewBox="0 0 220.67218 83.77594"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
    sodipodi:docname="spinner-spin.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,13 +24,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="5.9223906"
-     inkscape:cx="79.359845"
-     inkscape:cy="41.452855"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:zoom="1"
+     inkscape:cx="112.5"
+     inkscape:cy="70.5"
+     inkscape:window-width="2259"
+     inkscape:window-height="1218"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -63,10 +63,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-471.99997,-246.99998)">
+     transform="translate(-438.48001,-218.38196)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Yuji Mai';-inkscape-font-specification:'Yuji Mai';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:center;text-anchor:middle;fill:url(#linearGradient5);fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke fill markers"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:96px;font-family:'Potta One';-inkscape-font-specification:'Potta One';font-variant-caps:small-caps;font-variant-numeric:tabular-nums;text-align:center;text-anchor:middle;fill:url(#linearGradient5);fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke fill markers"
        x="548"
        y="297.46991"
        id="text2"
@@ -75,6 +75,6 @@
          id="tspan2"
          x="548"
          y="297.46991"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Yuji Mai';-inkscape-font-specification:'Yuji Mai';fill:url(#linearGradient5);fill-opacity:1;stroke:#000000;stroke-opacity:1">回せ!</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:96px;font-family:'Potta One';-inkscape-font-specification:'Potta One';fill:url(#linearGradient5);fill-opacity:1;stroke:#000000;stroke-opacity:1">回せ!</tspan></text>
   </g>
 </svg>
