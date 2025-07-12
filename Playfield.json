@@ -7,17 +7,17 @@
         "Type": "osu.Game.Skinning.LegacyHealthDisplay, osu.Game, Version=2025.710.0.0, Culture=neutral, PublicKeyToken=null",
         "Position": {
           "x": -10.0,
-          "y": 1.0
+          "y": 15.0
         },
         "Rotation": 0.0,
         "Scale": {
           "x": 1.0,
-          "y": 1.0
+          "y": -1.0
         },
         "Width": null,
         "Height": null,
         "Anchor": 33,
-        "Origin": 36,
+        "Origin": 33,
         "UsesFixedAnchor": true,
         "Settings": {},
         "Children": []
@@ -26,7 +26,7 @@
         "Type": "osu.Game.Skinning.LegacyScoreCounter, osu.Game, Version=2025.710.0.0, Culture=neutral, PublicKeyToken=null",
         "Position": {
           "x": -20.0,
-          "y": -30.0
+          "y": -28.0
         },
         "Rotation": 0.0,
         "Scale": {
@@ -44,18 +44,18 @@
       {
         "Type": "osu.Game.Skinning.LegacyAccuracyCounter, osu.Game, Version=2025.710.0.0, Culture=neutral, PublicKeyToken=null",
         "Position": {
-          "x": -180.0,
-          "y": -30.0
+          "x": -550.0,
+          "y": -16.0
         },
         "Rotation": 0.0,
         "Scale": {
-          "x": 0.75,
-          "y": 0.75
+          "x": 0.5,
+          "y": 0.5
         },
         "Width": null,
         "Height": null,
         "Anchor": 33,
-        "Origin": 34,
+        "Origin": 10,
         "UsesFixedAnchor": true,
         "Settings": {
           "accuracy_display": 0
