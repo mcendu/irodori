@@ -7,7 +7,7 @@
    viewBox="0 0 1024 200.00001"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
    sodipodi:docname="taiko-bar-right.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,13 +23,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     inkscape:zoom="1"
-     inkscape:cx="487"
-     inkscape:cy="109.5"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="487.0198"
+     inkscape:cy="109.77833"
+     inkscape:window-width="2259"
+     inkscape:window-height="1218"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -39,18 +39,18 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.999;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:4.04419;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
        id="rect5"
        width="1024"
-       height="176"
+       height="180"
        x="0"
-       y="12" />
+       y="10" />
     <rect
-       style="fill:#474747;fill-opacity:1;stroke:none;stroke-width:4.00681;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+       style="fill:#474747;fill-opacity:1;stroke:none;stroke-width:4.05423;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
        id="rect1"
        width="1024"
-       height="168"
+       height="172"
        x="0"
-       y="16" />
+       y="14" />
   </g>
 </svg>

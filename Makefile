@@ -405,6 +405,7 @@ IMAGES_SD=\
 	taiko-barline.png \
 	taiko-drum-inner.png \
 	taiko-drum-outer.png \
+	taiko-glow.png \
 	taiko-hit0.png \
 	$(IMAGES_TAIKO_HIT0) \
 	taiko-hit100.png \
