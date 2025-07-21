@@ -419,6 +419,8 @@ IMAGES_SD=\
 	taiko-nameplate.png \
 	taiko-roll-end.png \
 	taiko-roll-middle.png \
+	taiko-slider.png \
+	taiko-slider-fail.png \
 	taikobigcircle.png \
 	taikobigcircleoverlay.png \
 	taikohitcircle.png \
