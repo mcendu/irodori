@@ -383,6 +383,7 @@ IMAGES_SD=\
 	score-comma.png \
 	score-dot.png \
 	score-percent.png \
+	score-pp.png \
 	score-x.png \
 	sliderb.png \
 	sliderendcircle.png \
