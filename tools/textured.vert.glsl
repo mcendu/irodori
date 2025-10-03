@@ -22,23 +22,18 @@
 
 #version 460 core
 
-layout(location = 0) in vec2 uv;
-layout(location = 1) in float time;
-layout(location = 2) in mat3 colorGradientMatrix;
-layout(location = 5) in mat3 alphaGradientMatrix;
+layout(location = 0) in vec4 a_pos;
+layout(location = 1) in vec2 a_uv;
 
-layout(location = 0) out vec4 color;
+layout(location = 0) out vec2 v_uv;
 
-layout(set = 2, binding = 0) uniform sampler2D tex;
+layout(set = 1, std140, binding = 0) uniform uniforms {
+    mat4 projection;
+    mat4 transform;
+    float time;
+};
 
 void main() {
-  vec4 base = texture(tex, uv);
-  float baseAlpha = base.r;
-
-  vec3 basePos = { base.g, time, 1.0 };
-  vec3 colorPos = colorGradientMatrix * basePos;
-  vec3 alphaPos = alphaGradientMatrix * basePos;
-
-  float alpha = baseAlpha * texture(tex, alphaPos.xy / alphaPos.z).r;
-  color = vec4(texture(tex, colorPos.xy / colorPos.z).rgb, 1.0) * vec4(alpha);
+    gl_Position = projection * transform * a_pos;
+    v_uv = a_uv;
 }

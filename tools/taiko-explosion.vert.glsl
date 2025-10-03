@@ -25,14 +25,28 @@
 layout(location = 0) in vec4 a_pos;
 layout(location = 1) in vec2 a_uv;
 
-layout(location = 0) out vec2 v_uv;
+layout(location = 2) in mat3 i_colorGradientMatrix;
+layout(location = 5) in mat3 i_alphaGradientMatrix;
+layout(location = 8) in float i_timeScale;
+layout(location = 9) in float i_zOffset;
+layout(location = 10) in vec2 i_uvOffset;
 
-layout(set = 1, std140, binding = 0) uniform transformSpec {
+layout(location = 0) out vec2 v_uv;
+layout(location = 1) out float v_time;
+layout(location = 2) out mat3 v_colorGradientMatrix;
+layout(location = 5) out mat3 v_alphaGradientMatrix;
+
+layout(set = 1, std140, binding = 0) uniform uniforms {
     mat4 projection;
     mat4 transform;
+    float time;
 };
 
 void main() {
-  gl_Position = projection * transform * a_pos;
-  v_uv = a_uv;
+  vec4 pos = a_pos + vec4(0.0f, 0.0f, i_zOffset, 0.0f);
+  gl_Position = projection * transform * pos;
+  v_uv = a_uv + i_uvOffset;
+  v_time = clamp(time * i_timeScale, 0.0f, 127.0f / 128.0f);
+  v_colorGradientMatrix = i_colorGradientMatrix;
+  v_alphaGradientMatrix = i_alphaGradientMatrix;
 }

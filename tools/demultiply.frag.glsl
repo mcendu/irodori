@@ -23,22 +23,12 @@
 #version 460 core
 
 layout(location = 0) in vec2 uv;
-layout(location = 1) in float time;
-layout(location = 2) in mat3 colorGradientMatrix;
-layout(location = 5) in mat3 alphaGradientMatrix;
 
 layout(location = 0) out vec4 color;
 
 layout(set = 2, binding = 0) uniform sampler2D tex;
 
 void main() {
-  vec4 base = texture(tex, uv);
-  float baseAlpha = base.r;
-
-  vec3 basePos = { base.g, time, 1.0 };
-  vec3 colorPos = colorGradientMatrix * basePos;
-  vec3 alphaPos = alphaGradientMatrix * basePos;
-
-  float alpha = baseAlpha * texture(tex, alphaPos.xy / alphaPos.z).r;
-  color = vec4(texture(tex, colorPos.xy / colorPos.z).rgb, 1.0) * vec4(alpha);
+    vec4 m = texture(tex, uv);
+    color = vec4(m.rgb / vec3(m.a), m.a);
 }

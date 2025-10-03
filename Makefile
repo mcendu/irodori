@@ -528,52 +528,52 @@ slidertickmiss: animations/animate_miss.py animations/slidertickmiss.svg
 	touch slidertickmiss
 $(IMAGES_SLIDERTICKMISS:.png=.svg): slidertickmiss
 
-taiko-hit0: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+taiko-hit0: tools/taiko-explosion animations/taiko-hitexplosion.png
 	tools/taiko-explosion -t 4 -o taiko-hit0 animations/taiko-hitexplosion.png
 	touch taiko-hit0
 $(IMAGES_TAIKO_HIT0): taiko-hit0
 
-taiko-hit100: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+taiko-hit100: tools/taiko-explosion animations/taiko-hitexplosion.png
 	tools/taiko-explosion -t 1 -o taiko-hit100 animations/taiko-hitexplosion.png
 	touch taiko-hit100
 $(IMAGES_TAIKO_HIT100): taiko-hit100
 
-taiko-hit100k: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+taiko-hit100k: tools/taiko-explosion animations/taiko-hitexplosion.png
 	tools/taiko-explosion -t 3 -o taiko-hit100k animations/taiko-hitexplosion.png
 	touch taiko-hit100k
 $(IMAGES_TAIKO_HIT100K): taiko-hit100k
 
-taiko-hit300: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+taiko-hit300: tools/taiko-explosion animations/taiko-hitexplosion.png
 	tools/taiko-explosion -t 0 -o taiko-hit300 animations/taiko-hitexplosion.png
 	touch taiko-hit300
 $(IMAGES_TAIKO_HIT300): taiko-hit300
 
-taiko-hit300k: tools/taiko-explosion.o animations/taiko-hitexplosion.png
+taiko-hit300k: tools/taiko-explosion animations/taiko-hitexplosion.png
 	tools/taiko-explosion -t 2 -o taiko-hit300k animations/taiko-hitexplosion.png
 	touch taiko-hit300k
 $(IMAGES_TAIKO_HIT300K): taiko-hit300k
 
-taiko-hit0@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+taiko-hit0@2x: tools/taiko-explosion animations/taiko-hitexplosion@2x.png
 	tools/taiko-explosion --hd -t 4 -o taiko-hit0 animations/taiko-hitexplosion@2x.png
 	touch taiko-hit0@2x
 $(IMAGES_TAIKO_HIT0:.png=@2x.png): taiko-hit0@2x
 
-taiko-hit100@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+taiko-hit100@2x: tools/taiko-explosion animations/taiko-hitexplosion@2x.png
 	tools/taiko-explosion --hd -t 1 -o taiko-hit100 animations/taiko-hitexplosion@2x.png
 	touch taiko-hit100@2x
 $(IMAGES_TAIKO_HIT100:.png=@2x.png): taiko-hit100@2x
 
-taiko-hit100k@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+taiko-hit100k@2x: tools/taiko-explosion animations/taiko-hitexplosion@2x.png
 	tools/taiko-explosion --hd -t 3 -o taiko-hit100k animations/taiko-hitexplosion@2x.png
 	touch taiko-hit100k@2x
 $(IMAGES_TAIKO_HIT100K:.png=@2x.png): taiko-hit100k@2x
 
-taiko-hit300@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+taiko-hit300@2x: tools/taiko-explosion animations/taiko-hitexplosion@2x.png
 	tools/taiko-explosion --hd -t 0 -o taiko-hit300 animations/taiko-hitexplosion@2x.png
 	touch taiko-hit300@2x
 $(IMAGES_TAIKO_HIT300:.png=@2x.png): taiko-hit300@2x
 
-taiko-hit300k@2x: tools/taiko-explosion.o animations/taiko-hitexplosion@2x.png
+taiko-hit300k@2x: tools/taiko-explosion animations/taiko-hitexplosion@2x.png
 	tools/taiko-explosion --hd -t 2 -o taiko-hit300k animations/taiko-hitexplosion@2x.png
 	touch taiko-hit300k@2x
 $(IMAGES_TAIKO_HIT300K:.png=@2x.png): taiko-hit300k@2x

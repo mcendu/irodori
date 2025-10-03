@@ -10,9 +10,13 @@ all: taiko-explosion
 	glslang -V100 -o $@ $<
 
 TAIKO_EXPLOSION_OBJ=\
+	../animations/taiko-hitexplosion.png \
+	demultiply.vert.spv \
+	demultiply.frag.spv \
 	taiko-explosion.o \
 	taiko-explosion.vert.spv \
 	taiko-explosion.frag.spv \
+	textured.vert.spv \
 	textured.frag.spv
 
 taiko-explosion: $(TAIKO_EXPLOSION_OBJ)
@@ -30,3 +34,5 @@ clean:
 	-rm taiko-explosion.o
 	-rm taiko-explosion.vert.spv
 	-rm taiko-explosion.frag.spv
+	-rm textured.vert.spv
+	-rm textured.frag.spv

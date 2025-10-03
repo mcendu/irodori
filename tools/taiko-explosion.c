@@ -1,4 +1,5 @@
 /*
+ * "The quick and dirty TnT style hit explosion animation creator"
  * Copyright (c) 2025 McEndu.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,20 +37,24 @@
 #include <getopt.h>
 #include <math.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 SDL_GPUDevice *device;
-SDL_GPUTexture *compositeExplosionTexture;
-SDL_GPUTexture *outputTexture;
+SDL_GPUTexture *atlasTexture;
+SDL_GPUTexture *resultTexture;
+SDL_GPUTexture *postprocTexture;
 SDL_GPUSampler *sampler;
 SDL_GPUGraphicsPipeline *explosionPipeline;
 SDL_GPUGraphicsPipeline *textPipeline;
+SDL_GPUGraphicsPipeline *demultiplyPipeline;
 SDL_GPUTransferBuffer *outputDownload;
 SDL_GPUBuffer *vertexBuffer;
 SDL_GPUBuffer *indexBuffer;
+SDL_GPUBuffer *instanceBuffer;
 
 SDL_Surface *output;
 
@@ -60,19 +65,24 @@ struct vertex {
   float w;
   float u;
   float v;
-  float reserved[2];
+  float reserved0;
+  float reserved1;
+};
+
+struct instanceData {
+  float colorGradientSpec[3][4];
+  float alphaGradientSpec[3][4];
+  float timeScale;
+  float zOffset;
+  float uOffset;
+  float vOffset;
 };
 
 struct vertexUniforms {
   float projection[4][4];
   float transformation[4][4];
-};
-
-struct explosionUniforms {
-  float colorGradientSpec[12];
-  float alphaGradientSpec[12];
   float time;
-  float padding[3];
+  float reserved[3];
 };
 
 const char *basePath;
@@ -90,42 +100,57 @@ int outHeight;
 #endif
 
 const float aspectTransform[][4] = {
-    {1.0f, 0.0f, 0.0f, 0.0f},
-    {0.0f, 4.0f / 5.0f, 0.0f, 0.0f},
-    {0.0f, 0.0f, 1.0f, 0.0f},
-    {0.0f, 0.0f, 0.0f, 1.0f},
+    {1.00f, 0.00f, 0.00f, 0.00f},
+    {0.00f, 0.80f, 0.00f, 0.00f},
+    {0.00f, 0.00f, 1.00f, 0.00f},
+    {0.00f, 0.00f, 0.00f, 1.00f},
 };
 
 const float alphaGradient[][4] = {
-    {0.25f, 0.0f, 0.0f, 0.0f},
-    {0.0f, 0.25f, 0.0f, 0.0f},
-    {0.75f, 0.5f, 1.0f, 0.0f},
+    {0.125f, 0.000f, 0.000f, 0.000f},
+    {0.000f, 0.125f, 0.000f, 0.000f},
+    {0.000f, 0.250f, 1.000f, 0.000f},
+};
+
+const float alphaGradientFireworks[][4] = {
+    {0.125f, 0.000f, 0.000f, 0.000f},
+    {0.000f, 0.125f, 0.000f, 0.000f},
+    {0.375f, 0.250f, 1.000f, 0.000f},
 };
 
 const float colorGradient300[][4] = {
-    {0.25f, 0.0f, 0.0f, 0.0f},
-    {0.0f, 0.25f, 0.0f, 0.0f},
-    {0.75f, 0.75f, 1.0f, 0.0f},
+    {0.125f, 0.000f, 0.000f, 0.000f},
+    {0.000f, 0.125f, 0.000f, 0.000f},
+    {0.250f, 0.250f, 1.000f, 0.000f},
 };
 
 const float colorGradient100[][4] = {
-    {0.25f, 0.0f, 0.0f, 0.0f},
-    {0.0f, 0.25f, 0.0f, 0.0f},
-    {0.5f, 0.75f, 1.0f, 0.0f},
+    {0.0625f, 0.0000f, 0.0000f, 0.0000f},
+    {0.0000f, 0.1250f, 0.0000f, 0.0000f},
+    {0.1250f, 0.2500f, 1.0000f, 0.0000f},
 };
 
-const SDL_FRect dimensions300 = {0.0f, 0.0f, 0.5f, 0.5f};
-const SDL_FRect dimensions300g = {0.5f, 0.0f, 0.5f, 0.5f};
-const SDL_FRect dimensions100 = {0.0f, 0.5f, 0.5f, 0.5f};
+const float colorGradientFireworks[][4] = {
+    {0.0625f, 0.0000f, 0.0000f, 0.0000f},
+    {0.0000f, 0.1250f, 0.0000f, 0.0000f},
+    {0.1875f, 0.2500f, 1.0000f, 0.0000f},
+};
 
-const SDL_FRect textureArea300 = {0.5f, 0.5f, 0.125f, 0.125f};
-const SDL_FRect textureArea100 = {0.625f, 0.5f, 0.125f, 0.125f};
-const SDL_FRect textureAreaMiss = {0.5f, 0.625f, 0.25f, 0.125f};
+const SDL_FRect dimensions300 = {0.00f, 0.00f, 0.25f, 0.25f};
+const SDL_FRect dimensions300g = {0.25f, 0.00f, 0.25f, 0.25f};
+const SDL_FRect dimensions100 = {0.50f, 0.00f, 0.25f, 0.25f};
+const SDL_FRect dimensionsFireworks = {0.75f, 0.00f, 0.25f, 0.25f};
+
+const SDL_FRect textureArea300 = {0x0p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
+const SDL_FRect textureArea100 = {0x1p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
+const SDL_FRect textureAreaMiss = {0x2p-4f, 0x6p-4f, 0x2p-4f, 0x1p-4f};
 const SDL_FRect textRectHit = {-0.25f, -0.40625f, 0.5f, -0.5f};
 const SDL_FRect textRectMiss = {-0.5f, -0.40625f, 1.0f, -0.5f};
 
 const struct resultData {
   int frames;
+  bool explosion;
+  bool fireworks;
   const SDL_FRect *explosionTextureArea;
   const SDL_FRect *textTextureArea;
   const SDL_FRect *textRect;
@@ -137,6 +162,8 @@ const struct resultData {
         .colorGradient = colorGradient300,
         .textTextureArea = &textureArea300,
         .textRect = &textRectHit,
+        .explosion = true,
+        .fireworks = false,
     },
     {
         .frames = 10,
@@ -144,13 +171,17 @@ const struct resultData {
         .colorGradient = colorGradient100,
         .textTextureArea = &textureArea100,
         .textRect = &textRectHit,
+        .explosion = true,
+        .fireworks = false,
     },
     {
-        .frames = 10,
+        .frames = 24,
         .explosionTextureArea = &dimensions300g,
         .colorGradient = colorGradient300,
         .textTextureArea = &textureArea300,
         .textRect = &textRectHit,
+        .explosion = true,
+        .fireworks = true,
     },
     {
         .frames = 10,
@@ -158,13 +189,17 @@ const struct resultData {
         .colorGradient = colorGradient100,
         .textTextureArea = &textureArea100,
         .textRect = &textRectHit,
+        .explosion = true,
+        .fireworks = false,
     },
     {
         .frames = 6,
         .explosionTextureArea = &dimensions300,
-        .colorGradient = NULL,
+        .colorGradient = colorGradient300,
         .textTextureArea = &textureAreaMiss,
         .textRect = &textRectMiss,
+        .explosion = false,
+        .fireworks = false,
     },
 };
 
@@ -204,7 +239,6 @@ SDL_GPUShader *loadShader(SDL_GPUDevice *dev, const char *name,
   memcpy(&effectiveParams, params, sizeof(SDL_GPUShaderCreateInfo));
   effectiveParams.code = code;
   effectiveParams.code_size = codeSize;
-  effectiveParams.entrypoint = "main";
 
   SDL_GPUShader *shader = SDL_CreateGPUShader(dev, &effectiveParams);
   if (!shader) {
@@ -256,16 +290,22 @@ int init() {
   int height = image->h;
 
   // transfer buffers
-  SDL_GPUTransferBuffer *explosionVertexUpload = SDL_CreateGPUTransferBuffer(
+  SDL_GPUTransferBuffer *vertexUpload = SDL_CreateGPUTransferBuffer(
       device, &(SDL_GPUTransferBufferCreateInfo){
                   .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-                  .size = 64 * sizeof(float),
+                  .size = 12 * sizeof(struct vertex),
                   .props = 0,
               });
-  SDL_GPUTransferBuffer *explosionIndexUpload = SDL_CreateGPUTransferBuffer(
+  SDL_GPUTransferBuffer *indexUpload = SDL_CreateGPUTransferBuffer(
       device, &(SDL_GPUTransferBufferCreateInfo){
                   .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
-                  .size = 8 * sizeof(uint16_t),
+                  .size = 6 * sizeof(uint16_t),
+                  .props = 0,
+              });
+  SDL_GPUTransferBuffer *instanceUpload = SDL_CreateGPUTransferBuffer(
+      device, &(SDL_GPUTransferBufferCreateInfo){
+                  .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD,
+                  .size = 2 * sizeof(struct instanceData),
                   .props = 0,
               });
   SDL_GPUTransferBuffer *textureUpload = SDL_CreateGPUTransferBuffer(
@@ -276,23 +316,39 @@ int init() {
               });
 
   // shaders
-  SDL_GPUShader *vertex = loadShader(device, "taiko-explosion.vert.spv",
-                                     &(SDL_GPUShaderCreateInfo){
-                                         .format = SDL_GPU_SHADERFORMAT_SPIRV,
-                                         .stage = SDL_GPU_SHADERSTAGE_VERTEX,
-                                         .num_samplers = 0,
-                                         .num_storage_buffers = 0,
-                                         .num_storage_textures = 0,
-                                         .num_uniform_buffers = 1,
-                                         .props = 0,
-                                     });
+  SDL_GPUShader *explosionVertex =
+      loadShader(device, "taiko-explosion.vert.spv",
+                 &(SDL_GPUShaderCreateInfo){
+                     .format = SDL_GPU_SHADERFORMAT_SPIRV,
+                     .stage = SDL_GPU_SHADERSTAGE_VERTEX,
+                     .entrypoint = "main",
+                     .num_samplers = 0,
+                     .num_storage_buffers = 0,
+                     .num_storage_textures = 0,
+                     .num_uniform_buffers = 1,
+                     .props = 0,
+                 });
 
   SDL_GPUShader *explosionFragment =
       loadShader(device, "taiko-explosion.frag.spv",
                  &(SDL_GPUShaderCreateInfo){
                      .format = SDL_GPU_SHADERFORMAT_SPIRV,
                      .stage = SDL_GPU_SHADERSTAGE_FRAGMENT,
+                     .entrypoint = "main",
                      .num_samplers = 1,
+                     .num_storage_buffers = 0,
+                     .num_storage_textures = 0,
+                     .num_uniform_buffers = 0,
+                     .props = 0,
+                 });
+
+  SDL_GPUShader *textVertex =
+      loadShader(device, "textured.vert.spv",
+                 &(SDL_GPUShaderCreateInfo){
+                     .format = SDL_GPU_SHADERFORMAT_SPIRV,
+                     .stage = SDL_GPU_SHADERSTAGE_VERTEX,
+                     .entrypoint = "main",
+                     .num_samplers = 0,
                      .num_storage_buffers = 0,
                      .num_storage_textures = 0,
                      .num_uniform_buffers = 1,
@@ -304,6 +360,7 @@ int init() {
                  &(SDL_GPUShaderCreateInfo){
                      .format = SDL_GPU_SHADERFORMAT_SPIRV,
                      .stage = SDL_GPU_SHADERSTAGE_FRAGMENT,
+                     .entrypoint = "main",
                      .num_samplers = 1,
                      .num_storage_buffers = 0,
                      .num_storage_textures = 0,
@@ -311,9 +368,36 @@ int init() {
                      .props = 0,
                  });
 
-  if (!vertex || !explosionFragment || !textFragment) {
+  SDL_GPUShader *demultiplyVertex =
+      loadShader(device, "demultiply.vert.spv",
+                 &(SDL_GPUShaderCreateInfo){
+                     .format = SDL_GPU_SHADERFORMAT_SPIRV,
+                     .stage = SDL_GPU_SHADERSTAGE_VERTEX,
+                     .entrypoint = "main",
+                     .num_samplers = 0,
+                     .num_storage_buffers = 0,
+                     .num_storage_textures = 0,
+                     .num_uniform_buffers = 0,
+                     .props = 0,
+                 });
+
+  SDL_GPUShader *demultiplyFragment =
+      loadShader(device, "demultiply.frag.spv",
+                 &(SDL_GPUShaderCreateInfo){
+                     .format = SDL_GPU_SHADERFORMAT_SPIRV,
+                     .stage = SDL_GPU_SHADERSTAGE_FRAGMENT,
+                     .entrypoint = "main",
+                     .num_samplers = 1,
+                     .num_storage_buffers = 0,
+                     .num_storage_textures = 0,
+                     .num_uniform_buffers = 0,
+                     .props = 0,
+                 });
+
+  if (!explosionVertex || !explosionFragment || !textVertex || !textFragment ||
+      !demultiplyVertex || !demultiplyFragment) {
     goto fail;
-  } else if (!explosionVertexUpload || !explosionIndexUpload ||
+  } else if (!vertexUpload || !indexUpload || !instanceUpload ||
              !textureUpload) {
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
@@ -323,58 +407,28 @@ int init() {
 
   // pipelines
   SDL_GPUGraphicsPipelineCreateInfo pipelineParams = {
-      .vertex_shader = vertex,
-      .vertex_input_state =
-          {
-              .vertex_buffer_descriptions =
-                  (SDL_GPUVertexBufferDescription[]){
-                      {
-                          .slot = 0,
-                          .pitch = 8 * sizeof(float),
-                          .input_rate = SDL_GPU_VERTEXINPUTRATE_VERTEX,
-                          .instance_step_rate = 0,
-                      },
-                  },
-              .num_vertex_buffers = 1,
-              .vertex_attributes =
-                  (SDL_GPUVertexAttribute[]){
-                      {
-                          .location = 0,
-                          .buffer_slot = 0,
-                          .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
-                          .offset = 0,
-                      },
-                      {
-                          .location = 1,
-                          .buffer_slot = 0,
-                          .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT2,
-                          .offset = 4 * sizeof(float),
-                      },
-                  },
-              .num_vertex_attributes = 2,
-          },
       .primitive_type = SDL_GPU_PRIMITIVETYPE_TRIANGLELIST,
       .rasterizer_state = {0},
       .multisample_state = {0},
       .depth_stencil_state = {0},
       .target_info =
           {
-              .color_target_descriptions =
-                  (SDL_GPUColorTargetDescription[]){
-                      {.format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
-                       .blend_state =
-                           {
-                               .src_color_blendfactor = SDL_GPU_BLENDFACTOR_ONE,
-                               .dst_color_blendfactor =
-                                   SDL_GPU_BLENDFACTOR_ONE_MINUS_SRC_ALPHA,
-                               .color_blend_op = SDL_GPU_BLENDOP_ADD,
-                               .src_alpha_blendfactor = SDL_GPU_BLENDFACTOR_ONE,
-                               .dst_alpha_blendfactor =
-                                   SDL_GPU_BLENDFACTOR_ONE_MINUS_SRC_ALPHA,
-                               .alpha_blend_op = SDL_GPU_BLENDOP_ADD,
-                               .enable_blend = true,
-                               .enable_color_write_mask = false,
-                           }}},
+              .color_target_descriptions = (SDL_GPUColorTargetDescription[]){{
+                  .format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
+                  .blend_state =
+                      {
+                          .src_color_blendfactor = SDL_GPU_BLENDFACTOR_ONE,
+                          .dst_color_blendfactor =
+                              SDL_GPU_BLENDFACTOR_ONE_MINUS_SRC_ALPHA,
+                          .color_blend_op = SDL_GPU_BLENDOP_ADD,
+                          .src_alpha_blendfactor = SDL_GPU_BLENDFACTOR_ONE,
+                          .dst_alpha_blendfactor =
+                              SDL_GPU_BLENDFACTOR_ONE_MINUS_SRC_ALPHA,
+                          .alpha_blend_op = SDL_GPU_BLENDOP_ADD,
+                          .enable_blend = true,
+                          .enable_color_write_mask = false,
+                      },
+              }},
               .num_color_targets = 1,
               .depth_stencil_format = SDL_GPU_TEXTUREFORMAT_INVALID,
               .has_depth_stencil_target = false,
@@ -382,11 +436,142 @@ int init() {
       .props = 0,
   };
 
+  pipelineParams.vertex_shader = explosionVertex;
   pipelineParams.fragment_shader = explosionFragment;
+  pipelineParams.vertex_input_state =
+      (SDL_GPUVertexInputState){
+          .vertex_buffer_descriptions =
+              (SDL_GPUVertexBufferDescription[]){
+                  {
+                      .slot = 0,
+                      .pitch = sizeof(struct vertex),
+                      .input_rate = SDL_GPU_VERTEXINPUTRATE_VERTEX,
+                      .instance_step_rate = 0,
+                  },
+                  {
+                      .slot = 1,
+                      .pitch = sizeof(struct instanceData),
+                      .input_rate = SDL_GPU_VERTEXINPUTRATE_INSTANCE,
+                      .instance_step_rate = 0,
+                  },
+              },
+          .num_vertex_buffers = 2,
+          .vertex_attributes =
+              (SDL_GPUVertexAttribute[]){
+                  {
+                      .location = 0,
+                      .buffer_slot = 0,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset = offsetof(struct vertex, x),
+                  },
+                  {
+                      .location = 1,
+                      .buffer_slot = 0,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT2,
+                      .offset = offsetof(struct vertex, u),
+                  },
+                  {
+                      .location = 2,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset =
+                          offsetof(struct instanceData, colorGradientSpec[0]),
+                  },
+                  {
+                      .location = 3,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset =
+                          offsetof(struct instanceData, colorGradientSpec[1]),
+                  },
+                  {
+                      .location = 4,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset =
+                          offsetof(struct instanceData, colorGradientSpec[2]),
+                  },
+                  {
+                      .location = 5,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset =
+                          offsetof(struct instanceData, alphaGradientSpec[0]),
+                  },
+                  {
+                      .location = 6,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset =
+                          offsetof(struct instanceData, alphaGradientSpec[1]),
+                  },
+                  {
+                      .location = 7,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset =
+                          offsetof(struct instanceData, alphaGradientSpec[2]),
+                  },
+                  {
+                      .location = 8,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT,
+                      .offset = offsetof(struct instanceData, timeScale),
+                  },
+                  {
+                      .location = 9,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT,
+                      .offset = offsetof(struct instanceData, zOffset),
+                  },
+                  {
+                      .location = 10,
+                      .buffer_slot = 1,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT2,
+                      .offset = offsetof(struct instanceData, uOffset),
+                  },
+              },
+          .num_vertex_attributes = 11,
+      },
   explosionPipeline = SDL_CreateGPUGraphicsPipeline(device, &pipelineParams);
 
+  pipelineParams.vertex_input_state =
+      (SDL_GPUVertexInputState){
+          .vertex_buffer_descriptions =
+              (SDL_GPUVertexBufferDescription[]){
+                  {
+                      .slot = 0,
+                      .pitch = sizeof(struct vertex),
+                      .input_rate = SDL_GPU_VERTEXINPUTRATE_VERTEX,
+                      .instance_step_rate = 0,
+                  },
+              },
+          .num_vertex_buffers = 1,
+          .vertex_attributes =
+              (SDL_GPUVertexAttribute[]){
+                  {
+                      .location = 0,
+                      .buffer_slot = 0,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT4,
+                      .offset = offsetof(struct vertex, x),
+                  },
+                  {
+                      .location = 1,
+                      .buffer_slot = 0,
+                      .format = SDL_GPU_VERTEXELEMENTFORMAT_FLOAT2,
+                      .offset = offsetof(struct vertex, u),
+                  },
+              },
+          .num_vertex_attributes = 2,
+      },
+
+  pipelineParams.vertex_shader = textVertex;
   pipelineParams.fragment_shader = textFragment;
   textPipeline = SDL_CreateGPUGraphicsPipeline(device, &pipelineParams);
+
+  pipelineParams.vertex_shader = demultiplyVertex;
+  pipelineParams.fragment_shader = demultiplyFragment;
+  demultiplyPipeline = SDL_CreateGPUGraphicsPipeline(device, &pipelineParams);
 
   if (!explosionPipeline || !textPipeline) {
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
@@ -418,7 +603,7 @@ int init() {
     goto fail;
   }
 
-  compositeExplosionTexture = SDL_CreateGPUTexture(
+  atlasTexture = SDL_CreateGPUTexture(
       device, &(SDL_GPUTextureCreateInfo){
                   .type = SDL_GPU_TEXTURETYPE_2D,
                   .format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
@@ -431,7 +616,7 @@ int init() {
                   .props = 0,
               });
 
-  if (!compositeExplosionTexture || !textureUpload) {
+  if (!atlasTexture || !textureUpload) {
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "cannot set up textures");
     goto fail;
   }
@@ -446,7 +631,21 @@ int init() {
   outWidth = explosionTextureArea->w * width;
   outHeight = explosionTextureArea->h * height * 1.25;
   output = SDL_CreateSurface(outWidth, outHeight, SDL_PIXELFORMAT_ABGR8888);
-  outputTexture = SDL_CreateGPUTexture(
+
+  resultTexture = SDL_CreateGPUTexture(
+      device, &(SDL_GPUTextureCreateInfo){
+                  .type = SDL_GPU_TEXTURETYPE_2D,
+                  .usage = SDL_GPU_TEXTUREUSAGE_COLOR_TARGET |
+                           SDL_GPU_TEXTUREUSAGE_SAMPLER,
+                  .format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
+                  .width = outWidth,
+                  .height = outHeight,
+                  .layer_count_or_depth = 1,
+                  .num_levels = 1,
+                  .sample_count = 0,
+                  .props = 0,
+              });
+  postprocTexture = SDL_CreateGPUTexture(
       device, &(SDL_GPUTextureCreateInfo){
                   .type = SDL_GPU_TEXTURETYPE_2D,
                   .usage = SDL_GPU_TEXTUREUSAGE_COLOR_TARGET,
@@ -465,7 +664,7 @@ int init() {
                   .props = 0,
               });
 
-  if (!outputTexture || !outputDownload) {
+  if (!resultTexture || !postprocTexture || !outputDownload) {
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "cannot set up textures");
     goto fail;
@@ -475,57 +674,99 @@ int init() {
   vertexBuffer =
       SDL_CreateGPUBuffer(device, &(SDL_GPUBufferCreateInfo){
                                       .usage = SDL_GPU_BUFFERUSAGE_VERTEX,
-                                      .size = 64 * sizeof(float),
+                                      .size = 12 * sizeof(struct vertex),
                                       .props = 0,
                                   });
   indexBuffer =
       SDL_CreateGPUBuffer(device, &(SDL_GPUBufferCreateInfo){
                                       .usage = SDL_GPU_BUFFERUSAGE_INDEX,
-                                      .size = 8 * sizeof(uint16_t),
+                                      .size = 6 * sizeof(uint16_t),
+                                      .props = 0,
+                                  });
+  instanceBuffer =
+      SDL_CreateGPUBuffer(device, &(SDL_GPUBufferCreateInfo){
+                                      .usage = SDL_GPU_BUFFERUSAGE_VERTEX,
+                                      .size = 2 * sizeof(struct instanceData),
                                       .props = 0,
                                   });
 
-  if (!vertexBuffer || !indexBuffer) {
+  if (!vertexBuffer || !indexBuffer || !instanceBuffer) {
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "%s", SDL_GetError());
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "cannot create vertex buffers");
     goto fail;
   }
 
-  struct vertex *vertices =
-      SDL_MapGPUTransferBuffer(device, explosionVertexUpload, false);
+  {
+    struct vertex *vertices =
+        SDL_MapGPUTransferBuffer(device, vertexUpload, false);
 
-  vertices[0] = (struct vertex){-1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
-  vertices[1] = (struct vertex){1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
-  vertices[2] = (struct vertex){-1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
-  vertices[3] = (struct vertex){1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
-  vertices[4] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
-  vertices[5] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
-  vertices[6] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
-  vertices[7] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
+    // explosion
+    vertices[0] = (struct vertex){-1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[1] = (struct vertex){1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[2] = (struct vertex){-1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[3] = (struct vertex){1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
 
-  vertices[0].u = vertices[2].u = explosionTextureArea->x;
-  vertices[1].u = vertices[3].u =
-      explosionTextureArea->x + explosionTextureArea->w;
-  vertices[0].v = vertices[1].v = explosionTextureArea->y;
-  vertices[2].v = vertices[3].v =
-      explosionTextureArea->y + explosionTextureArea->h;
+    vertices[0].u = vertices[1].u = explosionTextureArea->x;
+    vertices[2].u = vertices[3].u =
+        explosionTextureArea->x + explosionTextureArea->w;
+    vertices[0].v = vertices[2].v = explosionTextureArea->y;
+    vertices[1].v = vertices[3].v =
+        explosionTextureArea->y + explosionTextureArea->h;
 
-  vertices[4].x = vertices[6].x = textRect->x;
-  vertices[5].x = vertices[7].x = textRect->x + textRect->w;
-  vertices[4].y = vertices[5].y = textRect->y;
-  vertices[6].y = vertices[7].y = textRect->y + textRect->h;
-  vertices[4].u = vertices[6].u = textTextureArea->x;
-  vertices[5].u = vertices[7].u = textTextureArea->x + textTextureArea->w;
-  vertices[4].v = vertices[5].v = textTextureArea->y;
-  vertices[6].v = vertices[7].v = textTextureArea->y + textTextureArea->h;
+    // text
+    vertices[4] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[5] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[6] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[7] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
 
-  SDL_UnmapGPUTransferBuffer(device, explosionVertexUpload);
+    vertices[4].x = vertices[6].x = textRect->x;
+    vertices[5].x = vertices[7].x = textRect->x + textRect->w;
+    vertices[4].y = vertices[5].y = textRect->y;
+    vertices[6].y = vertices[7].y = textRect->y + textRect->h;
+    vertices[4].u = vertices[6].u = textTextureArea->x;
+    vertices[5].u = vertices[7].u = textTextureArea->x + textTextureArea->w;
+    vertices[4].v = vertices[5].v = textTextureArea->y;
+    vertices[6].v = vertices[7].v = textTextureArea->y + textTextureArea->h;
+
+    // post-processing
+    vertices[8] = (struct vertex){-1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[9] = (struct vertex){1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
+    vertices[10] = (struct vertex){-1.0, -1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0};
+    vertices[11] = (struct vertex){1.0, -1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0};
+
+    SDL_UnmapGPUTransferBuffer(device, vertexUpload);
+  }
 
   {
-    uint16_t *buf =
-        SDL_MapGPUTransferBuffer(device, explosionIndexUpload, false);
+    uint16_t *buf = SDL_MapGPUTransferBuffer(device, indexUpload, false);
     memcpy(buf, indices, sizeof(indices));
-    SDL_UnmapGPUTransferBuffer(device, explosionIndexUpload);
+    SDL_UnmapGPUTransferBuffer(device, indexUpload);
+  }
+
+  {
+    struct instanceData *instances =
+        SDL_MapGPUTransferBuffer(device, instanceUpload, false);
+
+    // explosion
+    const float (*colorGradient)[4] = results[result].colorGradient;
+    memcpy(instances[0].colorGradientSpec, colorGradient, sizeof(float[3][4]));
+    memcpy(instances[0].alphaGradientSpec, alphaGradient, sizeof(float[3][4]));
+    instances[0].timeScale = 1.0 / 9.0;
+    instances[0].zOffset = 0x0p-50f;
+    instances[0].uOffset = 0.0;
+    instances[0].vOffset = 0.0;
+
+    // fireworks
+    memcpy(instances[1].colorGradientSpec, colorGradientFireworks,
+           sizeof(float[3][4]));
+    memcpy(instances[1].alphaGradientSpec, alphaGradientFireworks,
+           sizeof(float[3][4]));
+    instances[1].timeScale = 1.0 / 24.0;
+    instances[1].zOffset = 0x1p-50f;
+    instances[1].uOffset = dimensionsFireworks.x - dimensions300g.x;
+    instances[1].vOffset = dimensionsFireworks.y - dimensions300g.y;
+
+    SDL_UnmapGPUTransferBuffer(device, instanceUpload);
   }
 
   // upload
@@ -540,7 +781,7 @@ int init() {
                              .rows_per_layer = height,
                          },
                          &(SDL_GPUTextureRegion){
-                             .texture = compositeExplosionTexture,
+                             .texture = atlasTexture,
                              .layer = 0,
                              .x = 0,
                              .y = 0,
@@ -550,55 +791,72 @@ int init() {
                              .d = 1,
                          },
                          false);
-  SDL_UploadToGPUBuffer(
-      copy,
-      &(SDL_GPUTransferBufferLocation){.transfer_buffer = explosionVertexUpload,
-                                       .offset = 0},
-      &(SDL_GPUBufferRegion){
-          .buffer = vertexBuffer,
-          .offset = 0,
-          .size = 64 * sizeof(float),
-      },
-      false);
-  SDL_UploadToGPUBuffer(
-      copy,
-      &(SDL_GPUTransferBufferLocation){.transfer_buffer = explosionIndexUpload,
-                                       .offset = 0},
-      &(SDL_GPUBufferRegion){
-          .buffer = indexBuffer,
-          .offset = 0,
-          .size = 8 * sizeof(uint16_t),
-      },
-      false);
+  SDL_UploadToGPUBuffer(copy,
+                        &(SDL_GPUTransferBufferLocation){
+                            .transfer_buffer = vertexUpload, .offset = 0},
+                        &(SDL_GPUBufferRegion){
+                            .buffer = vertexBuffer,
+                            .offset = 0,
+                            .size = 12 * sizeof(struct vertex),
+                        },
+                        false);
+  SDL_UploadToGPUBuffer(copy,
+                        &(SDL_GPUTransferBufferLocation){
+                            .transfer_buffer = indexUpload, .offset = 0},
+                        &(SDL_GPUBufferRegion){
+                            .buffer = indexBuffer,
+                            .offset = 0,
+                            .size = 6 * sizeof(uint16_t),
+                        },
+                        false);
+  SDL_UploadToGPUBuffer(copy,
+                        &(SDL_GPUTransferBufferLocation){
+                            .transfer_buffer = instanceUpload, .offset = 0},
+                        &(SDL_GPUBufferRegion){
+                            .buffer = instanceBuffer,
+                            .offset = 0,
+                            .size = 2 * sizeof(struct instanceData),
+                        },
+                        false);
 
   SDL_EndGPUCopyPass(copy);
   SDL_SubmitGPUCommandBuffer(cmd);
 
   SDL_DestroySurface(image);
-  SDL_ReleaseGPUShader(device, vertex);
+  SDL_ReleaseGPUShader(device, explosionVertex);
   SDL_ReleaseGPUShader(device, explosionFragment);
+  SDL_ReleaseGPUShader(device, textVertex);
   SDL_ReleaseGPUShader(device, textFragment);
+  SDL_ReleaseGPUShader(device, demultiplyVertex);
+  SDL_ReleaseGPUShader(device, demultiplyFragment);
   SDL_ReleaseGPUTransferBuffer(device, textureUpload);
-  SDL_ReleaseGPUTransferBuffer(device, explosionVertexUpload);
-  SDL_ReleaseGPUTransferBuffer(device, explosionIndexUpload);
+  SDL_ReleaseGPUTransferBuffer(device, vertexUpload);
+  SDL_ReleaseGPUTransferBuffer(device, indexUpload);
+  SDL_ReleaseGPUTransferBuffer(device, instanceUpload);
 
   return 0;
 
 fail:
   SDL_DestroySurface(image);
-  SDL_ReleaseGPUShader(device, vertex);
+  SDL_ReleaseGPUShader(device, explosionVertex);
   SDL_ReleaseGPUShader(device, explosionFragment);
+  SDL_ReleaseGPUShader(device, textVertex);
   SDL_ReleaseGPUShader(device, textFragment);
+  SDL_ReleaseGPUShader(device, demultiplyVertex);
+  SDL_ReleaseGPUShader(device, demultiplyFragment);
   SDL_ReleaseGPUTransferBuffer(device, textureUpload);
-  SDL_ReleaseGPUTransferBuffer(device, explosionVertexUpload);
-  SDL_ReleaseGPUTransferBuffer(device, explosionIndexUpload);
+  SDL_ReleaseGPUTransferBuffer(device, vertexUpload);
+  SDL_ReleaseGPUTransferBuffer(device, indexUpload);
+  SDL_ReleaseGPUTransferBuffer(device, instanceUpload);
   return 1;
 }
 
 void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
                      double time) {
-  if (results[result].colorGradient == NULL || time < 0 ||
-      time >= 1.0)
+  double explosionTime = (time + 0.5) / 9.0;
+  double fireworksTime = (time + 0.5) / 12.0;
+
+  if (!(results[result].explosion))
     return;
 
   struct vertexUniforms vertexUniforms = {
@@ -609,32 +867,32 @@ void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
               {0.0f, 0.0f, 1.0f, 0.0f},
               {0.0f, 0.0f, 0.0f, 1.0f},
           },
+      .time = time + 0.5,
   };
   memcpy(&vertexUniforms.projection, aspectTransform, sizeof(aspectTransform));
 
-  struct explosionUniforms fragmentUniforms;
-  memcpy(&fragmentUniforms.colorGradientSpec, results[result].colorGradient,
-         12 * sizeof(float));
-  memcpy(&fragmentUniforms.alphaGradientSpec, alphaGradient,
-         12 * sizeof(float));
-  fragmentUniforms.time = (time / 1.0) + (1.0f / 256.0f);
-
   SDL_BindGPUGraphicsPipeline(render, explosionPipeline);
-  SDL_BindGPUVertexBuffers(
-      render, 0,
-      (SDL_GPUBufferBinding[]){{.buffer = vertexBuffer, .offset = 0}}, 1);
+  SDL_BindGPUVertexBuffers(render, 0,
+                           (SDL_GPUBufferBinding[]){
+                               {.buffer = vertexBuffer, .offset = 0},
+                               {.buffer = instanceBuffer, .offset = 0},
+                           },
+                           2);
   SDL_BindGPUIndexBuffer(
       render, &(SDL_GPUBufferBinding){.buffer = indexBuffer, .offset = 0},
       SDL_GPU_INDEXELEMENTSIZE_16BIT);
   SDL_PushGPUVertexUniformData(cmd, 0, &vertexUniforms, sizeof(vertexUniforms));
-  SDL_PushGPUFragmentUniformData(cmd, 0, &fragmentUniforms,
-                                 sizeof(fragmentUniforms));
   SDL_BindGPUFragmentSamplers(
       render, 0,
       (SDL_GPUTextureSamplerBinding[]){
-          {.sampler = sampler, .texture = compositeExplosionTexture}},
+          {.sampler = sampler, .texture = atlasTexture}},
       1);
-  SDL_DrawGPUIndexedPrimitives(render, 6, 1, 0, 0, 0);
+
+  if (results[result].fireworks) {
+    SDL_DrawGPUIndexedPrimitives(render, 6, 2, 0, 0, 0);
+  } else {
+    SDL_DrawGPUIndexedPrimitives(render, 6, 1, 0, 0, 0);
+  }
 }
 
 void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
@@ -675,18 +933,17 @@ void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
   SDL_BindGPUFragmentSamplers(
       render, 0,
       (SDL_GPUTextureSamplerBinding[]){
-          {.sampler = sampler, .texture = compositeExplosionTexture}},
+          {.sampler = sampler, .texture = atlasTexture}},
       1);
   SDL_DrawGPUIndexedPrimitives(render, 6, 1, 0, 0, 0);
 }
 
-int process(double time, SDL_Surface *surface) {
-  SDL_GPUCommandBuffer *renderCmds = SDL_AcquireGPUCommandBuffer(device);
-
+void postprocess(SDL_GPUCommandBuffer *cmd, SDL_GPUTexture *dst,
+                 SDL_GPUTexture *src) {
   SDL_GPURenderPass *render =
-      SDL_BeginGPURenderPass(renderCmds,
+      SDL_BeginGPURenderPass(cmd,
                              &(SDL_GPUColorTargetInfo){
-                                 .texture = outputTexture,
+                                 .texture = dst,
                                  .mip_level = 0,
                                  .layer_or_depth_plane = 0,
                                  .clear_color = {0.0f, 0.0f, 0.0f, 0.0f},
@@ -700,17 +957,53 @@ int process(double time, SDL_Surface *surface) {
                              },
                              1, NULL);
 
-  renderExplosion(renderCmds, render, (time + 0.25) / 9.0);
-  renderText(renderCmds, render, time);
+  SDL_BindGPUGraphicsPipeline(render, demultiplyPipeline);
+  SDL_BindGPUVertexBuffers(
+      render, 0,
+      (SDL_GPUBufferBinding[]){
+          {.buffer = vertexBuffer, .offset = 8 * sizeof(struct vertex)}},
+      1);
+  SDL_BindGPUIndexBuffer(
+      render, &(SDL_GPUBufferBinding){.buffer = indexBuffer, .offset = 0},
+      SDL_GPU_INDEXELEMENTSIZE_16BIT);
+  SDL_BindGPUFragmentSamplers(
+      render, 0,
+      (SDL_GPUTextureSamplerBinding[]){{.sampler = sampler, .texture = src}},
+      1);
+  SDL_DrawGPUIndexedPrimitives(render, 6, 1, 0, 0, 0);
 
   SDL_EndGPURenderPass(render);
-  SDL_SubmitGPUCommandBuffer(renderCmds);
+}
 
-  SDL_GPUCommandBuffer *copyCmds = SDL_AcquireGPUCommandBuffer(device);
-  SDL_GPUCopyPass *copy = SDL_BeginGPUCopyPass(copyCmds);
+int process(double time, SDL_Surface *surface) {
+  SDL_GPUCommandBuffer *commands = SDL_AcquireGPUCommandBuffer(device);
+
+  SDL_GPURenderPass *render =
+      SDL_BeginGPURenderPass(commands,
+                             &(SDL_GPUColorTargetInfo){
+                                 .texture = resultTexture,
+                                 .mip_level = 0,
+                                 .layer_or_depth_plane = 0,
+                                 .clear_color = {0.0f, 0.0f, 0.0f, 0.0f},
+                                 .load_op = SDL_GPU_LOADOP_CLEAR,
+                                 .store_op = SDL_GPU_STOREOP_STORE,
+                                 .resolve_texture = NULL,
+                                 .resolve_mip_level = 0,
+                                 .resolve_layer = 0,
+                                 .cycle = false,
+                                 .cycle_resolve_texture = false,
+                             },
+                             1, NULL);
+  renderExplosion(commands, render, time);
+  renderText(commands, render, time);
+  SDL_EndGPURenderPass(render);
+
+  postprocess(commands, postprocTexture, resultTexture);
+
+  SDL_GPUCopyPass *copy = SDL_BeginGPUCopyPass(commands);
   SDL_DownloadFromGPUTexture(copy,
                              &(SDL_GPUTextureRegion){
-                                 .texture = outputTexture,
+                                 .texture = postprocTexture,
                                  .mip_level = 0,
                                  .layer = 0,
                                  .x = 0,
@@ -727,7 +1020,8 @@ int process(double time, SDL_Surface *surface) {
                                  .rows_per_layer = outHeight,
                              });
   SDL_EndGPUCopyPass(copy);
-  SDL_GPUFence *fence = SDL_SubmitGPUCommandBufferAndAcquireFence(copyCmds);
+
+  SDL_GPUFence *fence = SDL_SubmitGPUCommandBufferAndAcquireFence(commands);
   SDL_WaitForGPUFences(device, false, (SDL_GPUFence *[]){fence}, 1);
   SDL_ReleaseGPUFence(device, fence);
 
@@ -741,13 +1035,16 @@ int process(double time, SDL_Surface *surface) {
 void cleanup() {
   SDL_DestroySurface(output);
   SDL_ReleaseGPUTransferBuffer(device, outputDownload);
-  SDL_ReleaseGPUTexture(device, compositeExplosionTexture);
-  SDL_ReleaseGPUTexture(device, outputTexture);
+  SDL_ReleaseGPUTexture(device, atlasTexture);
+  SDL_ReleaseGPUTexture(device, resultTexture);
+  SDL_ReleaseGPUTexture(device, postprocTexture);
   SDL_ReleaseGPUSampler(device, sampler);
   SDL_ReleaseGPUGraphicsPipeline(device, explosionPipeline);
   SDL_ReleaseGPUGraphicsPipeline(device, textPipeline);
+  SDL_ReleaseGPUGraphicsPipeline(device, demultiplyPipeline);
   SDL_ReleaseGPUBuffer(device, vertexBuffer);
   SDL_ReleaseGPUBuffer(device, indexBuffer);
+  SDL_ReleaseGPUBuffer(device, instanceBuffer);
   SDL_DestroyGPUDevice(device);
 }
 
@@ -808,6 +1105,7 @@ int main(int argc, char **argv) {
     char *outputName = SDL_malloc(outputNameSize);
     snprintf(outputName, outputNameSize, format, outputBaseName, i);
     IMG_SavePNG(output, outputName);
+    SDL_free(outputName);
   }
 
   cleanup();
