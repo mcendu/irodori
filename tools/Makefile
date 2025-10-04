@@ -10,7 +10,6 @@ all: taiko-explosion
 	glslang -V100 -o $@ $<
 
 TAIKO_EXPLOSION_OBJ=\
-	../animations/taiko-hitexplosion.png \
 	demultiply.vert.spv \
 	demultiply.frag.spv \
 	taiko-explosion.o \

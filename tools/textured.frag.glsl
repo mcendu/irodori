@@ -33,5 +33,6 @@ layout(set = 3, std140, binding = 0) uniform parameters {
 };
 
 void main() {
-  color = texture(tex, uv) * vec4(1.0, 1.0, 1.0, opacity);
+  vec4 src = texture(tex, uv);
+  color = vec4(src.rgb, 1.0) * vec4(src.a);
 }

@@ -22,18 +22,8 @@
  */
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_error.h>
-#include <SDL3/SDL_filesystem.h>
-#include <SDL3/SDL_gpu.h>
-#include <SDL3/SDL_init.h>
-#include <SDL3/SDL_log.h>
 #include <SDL3/SDL_main.h>
-#include <SDL3/SDL_pixels.h>
-#include <SDL3/SDL_rect.h>
-#include <SDL3/SDL_render.h>
-#include <SDL3/SDL_surface.h>
 #include <SDL3_image/SDL_image.h>
-#include <assert.h>
 #include <getopt.h>
 #include <math.h>
 #include <stdbool.h>
@@ -43,20 +33,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-SDL_GPUDevice *device;
-SDL_GPUTexture *atlasTexture;
-SDL_GPUTexture *resultTexture;
-SDL_GPUTexture *postprocTexture;
-SDL_GPUSampler *sampler;
-SDL_GPUGraphicsPipeline *explosionPipeline;
-SDL_GPUGraphicsPipeline *textPipeline;
-SDL_GPUGraphicsPipeline *demultiplyPipeline;
-SDL_GPUTransferBuffer *outputDownload;
-SDL_GPUBuffer *vertexBuffer;
-SDL_GPUBuffer *indexBuffer;
-SDL_GPUBuffer *instanceBuffer;
-
-SDL_Surface *output;
+#define debug false
 
 struct vertex {
   float x;
@@ -85,69 +62,78 @@ struct vertexUniforms {
   float reserved[3];
 };
 
-const char *basePath;
-const char *inputPath;
-int result;
-const char *outputBaseName;
+static SDL_GPUDevice *device;
+static SDL_GPUTexture *atlasTexture;
+static SDL_GPUTexture *resultTexture;
+static SDL_GPUTexture *postprocTexture;
+static SDL_GPUSampler *sampler;
+static SDL_GPUGraphicsPipeline *explosionPipeline;
+static SDL_GPUGraphicsPipeline *textPipeline;
+static SDL_GPUGraphicsPipeline *demultiplyPipeline;
+static SDL_GPUTransferBuffer *outputDownload;
+static SDL_GPUBuffer *vertexBuffer;
+static SDL_GPUBuffer *indexBuffer;
+static SDL_GPUBuffer *instanceBuffer;
 
-int outWidth;
-int outHeight;
+static SDL_Surface *output;
 
-#ifdef NDEBUG
-#define debug false
-#else
-#define debug true
-#endif
+static const char *basePath;
+static const char *inputPath;
+static int result;
+static const char *outputBaseName;
 
-const float aspectTransform[][4] = {
+static int outWidth;
+static int outHeight;
+
+static const float aspectTransform[][4] = {
     {1.00f, 0.00f, 0.00f, 0.00f},
     {0.00f, 0.80f, 0.00f, 0.00f},
     {0.00f, 0.00f, 1.00f, 0.00f},
     {0.00f, 0.00f, 0.00f, 1.00f},
 };
 
-const float alphaGradient[][4] = {
+static const float alphaGradient[][4] = {
     {0.125f, 0.000f, 0.000f, 0.000f},
     {0.000f, 0.125f, 0.000f, 0.000f},
     {0.000f, 0.250f, 1.000f, 0.000f},
 };
 
-const float alphaGradientFireworks[][4] = {
+static const float alphaGradientFireworks[][4] = {
     {0.125f, 0.000f, 0.000f, 0.000f},
     {0.000f, 0.125f, 0.000f, 0.000f},
     {0.375f, 0.250f, 1.000f, 0.000f},
 };
 
-const float colorGradient300[][4] = {
+static const float colorGradient300[][4] = {
     {0.125f, 0.000f, 0.000f, 0.000f},
     {0.000f, 0.125f, 0.000f, 0.000f},
     {0.250f, 0.250f, 1.000f, 0.000f},
 };
 
-const float colorGradient100[][4] = {
+static const float colorGradient100[][4] = {
     {0.0625f, 0.0000f, 0.0000f, 0.0000f},
     {0.0000f, 0.1250f, 0.0000f, 0.0000f},
     {0.1250f, 0.2500f, 1.0000f, 0.0000f},
 };
 
-const float colorGradientFireworks[][4] = {
+static const float colorGradientFireworks[][4] = {
     {0.0625f, 0.0000f, 0.0000f, 0.0000f},
     {0.0000f, 0.1250f, 0.0000f, 0.0000f},
     {0.1875f, 0.2500f, 1.0000f, 0.0000f},
 };
 
-const SDL_FRect dimensions300 = {0.00f, 0.00f, 0.25f, 0.25f};
-const SDL_FRect dimensions300g = {0.25f, 0.00f, 0.25f, 0.25f};
-const SDL_FRect dimensions100 = {0.50f, 0.00f, 0.25f, 0.25f};
-const SDL_FRect dimensionsFireworks = {0.75f, 0.00f, 0.25f, 0.25f};
+static const SDL_FRect dimensions300 = {0.00f, 0.00f, 0.25f, 0.25f};
+static const SDL_FRect dimensions300g = {0.25f, 0.00f, 0.25f, 0.25f};
+static const SDL_FRect dimensions100 = {0.50f, 0.00f, 0.25f, 0.25f};
+static const SDL_FRect dimensionsFireworks = {0.75f, 0.00f, 0.25f, 0.25f};
 
-const SDL_FRect textureArea300 = {0x0p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
-const SDL_FRect textureArea100 = {0x1p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
-const SDL_FRect textureAreaMiss = {0x2p-4f, 0x6p-4f, 0x2p-4f, 0x1p-4f};
-const SDL_FRect textRectHit = {-0.25f, -0.40625f, 0.5f, -0.5f};
-const SDL_FRect textRectMiss = {-0.5f, -0.40625f, 1.0f, -0.5f};
+static const SDL_FRect textureArea300 = {0x0p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
+static const SDL_FRect textureArea100 = {0x1p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
+static const SDL_FRect textureAreaMiss = {0x2p-4f, 0x6p-4f, 0x2p-4f, 0x1p-4f};
+static const SDL_FRect textRectHit = {-0.25f, 0.25f, 0.5f, -0.5f};
+static const SDL_FRect textRectMiss = {-0.5f, 0.25f, 1.0f, -0.5f};
 
-const struct resultData {
+static const struct resultData {
   int frames;
   bool explosion;
   bool fireworks;
@@ -157,7 +143,7 @@ const struct resultData {
   const float (*colorGradient)[4];
 } results[] = {
     {
-        .frames = 10,
+        .frames = 18,
         .explosionTextureArea = &dimensions300,
         .colorGradient = colorGradient300,
         .textTextureArea = &textureArea300,
@@ -166,7 +152,7 @@ const struct resultData {
         .fireworks = false,
     },
     {
-        .frames = 10,
+        .frames = 18,
         .explosionTextureArea = &dimensions100,
         .colorGradient = colorGradient100,
         .textTextureArea = &textureArea100,
@@ -175,7 +161,7 @@ const struct resultData {
         .fireworks = false,
     },
     {
-        .frames = 24,
+        .frames = 18,
         .explosionTextureArea = &dimensions300g,
         .colorGradient = colorGradient300,
         .textTextureArea = &textureArea300,
@@ -184,7 +170,7 @@ const struct resultData {
         .fireworks = true,
     },
     {
-        .frames = 10,
+        .frames = 18,
         .explosionTextureArea = &dimensions300,
         .colorGradient = colorGradient100,
         .textTextureArea = &textureArea100,
@@ -193,7 +179,7 @@ const struct resultData {
         .fireworks = false,
     },
     {
-        .frames = 6,
+        .frames = 18,
         .explosionTextureArea = &dimensions300,
         .colorGradient = colorGradient300,
         .textTextureArea = &textureAreaMiss,
@@ -203,18 +189,18 @@ const struct resultData {
     },
 };
 
-const char shortopts[] = "t:o:2";
+static const char shortopts[] = "t:o:2";
 
-const struct option longopts[] = {
+static const struct option longopts[] = {
     {"type", required_argument, NULL, 't'},
     {"output", required_argument, NULL, 'o'},
     {"hd", no_argument, NULL, '2'},
     {NULL, 0, NULL, 0},
 };
 
-const uint16_t indices[] = {0, 2, 1, 1, 2, 3};
+static const uint16_t indices[] = {0, 2, 1, 1, 2, 3};
 
-SDL_GPUShader *loadShader(SDL_GPUDevice *dev, const char *name,
+static SDL_GPUShader *loadShader(SDL_GPUDevice *dev, const char *name,
                           const SDL_GPUShaderCreateInfo *params) {
   // get path
   int pathSize = snprintf(NULL, 0, "%s/%s", basePath, name) + 1;
@@ -250,7 +236,7 @@ SDL_GPUShader *loadShader(SDL_GPUDevice *dev, const char *name,
   return shader;
 }
 
-int init() {
+static int init() {
   basePath = SDL_GetBasePath();
 
   // parameters
@@ -714,10 +700,10 @@ int init() {
         explosionTextureArea->y + explosionTextureArea->h;
 
     // text
-    vertices[4] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
-    vertices[5] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
-    vertices[6] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
-    vertices[7] = (struct vertex){0.0, 0.0, 0.5, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[4] = (struct vertex){0.0, 0.0, 0x2p-50, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[5] = (struct vertex){0.0, 0.0, 0x2p-50, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[6] = (struct vertex){0.0, 0.0, 0x2p-50, 1.0, 0.0, 0.0, 0.0, 0.0};
+    vertices[7] = (struct vertex){0.0, 0.0, 0x2p-50, 1.0, 0.0, 0.0, 0.0, 0.0};
 
     vertices[4].x = vertices[6].x = textRect->x;
     vertices[5].x = vertices[7].x = textRect->x + textRect->w;
@@ -763,8 +749,8 @@ int init() {
            sizeof(float[3][4]));
     instances[1].timeScale = 1.0 / 24.0;
     instances[1].zOffset = 0x1p-50f;
-    instances[1].uOffset = dimensionsFireworks.x - dimensions300g.x;
-    instances[1].vOffset = dimensionsFireworks.y - dimensions300g.y;
+    instances[1].uOffset = dimensionsFireworks.x - explosionTextureArea->x;
+    instances[1].vOffset = dimensionsFireworks.y - explosionTextureArea->y;
 
     SDL_UnmapGPUTransferBuffer(device, instanceUpload);
   }
@@ -851,11 +837,8 @@ fail:
   return 1;
 }
 
-void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
-                     double time) {
-  double explosionTime = (time + 0.5) / 9.0;
-  double fireworksTime = (time + 0.5) / 12.0;
-
+static void renderExplosion(SDL_GPUCommandBuffer *cmd,
+                            SDL_GPURenderPass *render, double time) {
   if (!(results[result].explosion))
     return;
 
@@ -867,7 +850,7 @@ void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
               {0.0f, 0.0f, 1.0f, 0.0f},
               {0.0f, 0.0f, 0.0f, 1.0f},
           },
-      .time = time + 0.5,
+      .time = time,
   };
   memcpy(&vertexUniforms.projection, aspectTransform, sizeof(aspectTransform));
 
@@ -895,17 +878,23 @@ void renderExplosion(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
   }
 }
 
-void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
-                double time) {
+static double easeOutElastic(double x) {
+  if (x <= 0.0) return 0.0;
+  if (x >= 1.0) return 1.0;
+
+  double c4 = (2.0 * 3.1415926535897932384626433) / 3.0;
+  return pow(2, -8 * x) * sin((x * 4.0 - 0.75) * c4) + 1;
+}
+
+static void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
+                       double time) {
   // animate
   float alpha = 1.0;
 
-  double y;
-  if (time <= 5) {
-    y = (1.0 / 50.0) * pow(time, 2) - (1.0 / 10.0) * time;
-  } else {
-    y = 0.0;
-  }
+  double normalizedTime = time / 16.0;
+  double from = -(1.0 / 3.0);
+  double to = -0.65625;
+  double y = from + easeOutElastic(normalizedTime) * (to - from);
 
   // render
   struct vertexUniforms vertexUniforms = {
@@ -938,8 +927,8 @@ void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
   SDL_DrawGPUIndexedPrimitives(render, 6, 1, 0, 0, 0);
 }
 
-void postprocess(SDL_GPUCommandBuffer *cmd, SDL_GPUTexture *dst,
-                 SDL_GPUTexture *src) {
+static void postprocess(SDL_GPUCommandBuffer *cmd, SDL_GPUTexture *dst,
+                        SDL_GPUTexture *src) {
   SDL_GPURenderPass *render =
       SDL_BeginGPURenderPass(cmd,
                              &(SDL_GPUColorTargetInfo){
@@ -975,7 +964,7 @@ void postprocess(SDL_GPUCommandBuffer *cmd, SDL_GPUTexture *dst,
   SDL_EndGPURenderPass(render);
 }
 
-int process(double time, SDL_Surface *surface) {
+static int process(double time, SDL_Surface *surface) {
   SDL_GPUCommandBuffer *commands = SDL_AcquireGPUCommandBuffer(device);
 
   SDL_GPURenderPass *render =
@@ -1032,7 +1021,7 @@ int process(double time, SDL_Surface *surface) {
   return 0;
 }
 
-void cleanup() {
+static void cleanup() {
   SDL_DestroySurface(output);
   SDL_ReleaseGPUTransferBuffer(device, outputDownload);
   SDL_ReleaseGPUTexture(device, atlasTexture);
