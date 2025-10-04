@@ -527,7 +527,7 @@ all:
 
 irodori-$(VERSION).osk: $(OBJECTS) $(RESOURCES)
 	if [ -e $@ ]; then rm $@; fi
-	zip -r $@ $(RESOURCES) $(OBJECTS)
+	zip -q -r $@ $(RESOURCES) $(OBJECTS)
 
 taiko-nameplate.svg: animations/taiko-nameplate.py animations/taiko-nameplate.svg
 	animations/taiko-nameplate.py \
