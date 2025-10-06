@@ -33,8 +33,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Change to true if you want Vulkan/DX12/Metal to output useful info.
 #define debug false
 
+// Vertex format.
 struct vertex {
   float x;
   float y;
@@ -46,6 +48,7 @@ struct vertex {
   float reserved1;
 };
 
+// Per-instance data format.
 struct instanceData {
   float colorGradientSpec[3][4];
   float alphaGradientSpec[3][4];
@@ -55,6 +58,7 @@ struct instanceData {
   float vOffset;
 };
 
+// Vertex-stage uniform format for explosion and text.
 struct vertexUniforms {
   float projection[4][4];
   float transformation[4][4];
@@ -62,6 +66,7 @@ struct vertexUniforms {
   float reserved[3];
 };
 
+// GPU objects.
 static SDL_GPUDevice *device;
 static SDL_GPUTexture *atlasTexture;
 static SDL_GPUTexture *resultTexture;
@@ -75,22 +80,42 @@ static SDL_GPUBuffer *vertexBuffer;
 static SDL_GPUBuffer *indexBuffer;
 static SDL_GPUBuffer *instanceBuffer;
 
-static SDL_Surface *output;
+// Result surface.
+static int outWidth;
+static int outHeight;
 
+// Programe parameters.
 static const char *basePath;
 static const char *inputPath;
 static int result;
 static const char *outputBaseName;
 
-static int outWidth;
-static int outHeight;
+// Coordinates are stored in a simple, normalized manner. For rendering,
+// the explosion animation takes up a 2.0 by 2.0 area; the rest is
+// conventional 2d Cartesian stuff. For the animation atlas, (0, 0)
+// refers to the top left and (1, 1) refers to the bottom right.
+//
+// Matrices are stored in column-major order, as passed down from the
+// good old OpenGL, so everything here are transposed from the usual
+// layout.
 
+// To accomodate the text, the aspect ratio of a frame is 4:5. Most of
+// the input assumes a square coordinate system, so this matrix
+// compensates for that.
 static const float aspectTransform[][4] = {
     {1.00f, 0.00f, 0.00f, 0.00f},
     {0.00f, 0.80f, 0.00f, 0.00f},
     {0.00f, 0.00f, 1.00f, 0.00f},
     {0.00f, 0.00f, 0.00f, 1.00f},
 };
+
+// The rest of the matrices here are 3x3, though the GPU dictates that
+// a 3x3 matrix should leave space for a 4th row per the sacred Align
+// To Sixteen Byte Boundaries rule.
+//
+// These matrices takes the normalized time and the value of the green
+// channel, both in the range [0.0, 1.0), and maps the coordinates onto
+// a gradient in the source texture.
 
 static const float alphaGradient[][4] = {
     {0.125f, 0.000f, 0.000f, 0.000f},
@@ -122,16 +147,30 @@ static const float colorGradientFireworks[][4] = {
     {0.500f, 0.250f, 1.000f, 0.000f},
 };
 
+// This array tells the GPU how to draw a rectangle with two triangles,
+// so that I don't need to write duplicated vertices.
+
+static const uint16_t indices[] = {0, 2, 1, 1, 2, 3};
+
+// Dimensions of the explosion textures.
+
 static const SDL_FRect dimensions300 = {0.00f, 0.00f, 0.25f, 0.25f};
 static const SDL_FRect dimensions300g = {0.25f, 0.00f, 0.25f, 0.25f};
 static const SDL_FRect dimensions100 = {0.50f, 0.00f, 0.25f, 0.25f};
 static const SDL_FRect dimensionsFireworks = {0.75f, 0.00f, 0.25f, 0.25f};
 
+// Dimensions of the text textures.
+
 static const SDL_FRect textureArea300 = {0x0p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
 static const SDL_FRect textureArea100 = {0x1p-4f, 0x6p-4f, 0x1p-4f, 0x1p-4f};
 static const SDL_FRect textureAreaMiss = {0x2p-4f, 0x6p-4f, 0x2p-4f, 0x1p-4f};
+
+// Where the text would end up in the resulting frame.
+
 static const SDL_FRect textRectHit = {-0.25f, 0.25f, 0.5f, -0.5f};
 static const SDL_FRect textRectMiss = {-0.5f, 0.25f, 1.0f, -0.5f};
+
+// All the aspects that are different for each animation.
 
 static const struct resultData {
   int frames;
@@ -189,19 +228,24 @@ static const struct resultData {
     },
 };
 
-static const char shortopts[] = "t:o:2";
+// Options understood by the program.
+
+static const char shortopts[] = "2ho:t:";
 
 static const struct option longopts[] = {
-    {"type", required_argument, NULL, 't'},
-    {"output", required_argument, NULL, 'o'},
+    {"animation", required_argument, NULL, 't'},
     {"hd", no_argument, NULL, '2'},
+    {"help", no_argument, NULL, 'h'},
+    {"output", required_argument, NULL, 'o'},
+    {"type", required_argument, NULL, 't'},
     {NULL, 0, NULL, 0},
 };
 
-static const uint16_t indices[] = {0, 2, 1, 1, 2, 3};
-
+/**
+ * Load an SPIR-V shader from a file.
+ */
 static SDL_GPUShader *loadShader(SDL_GPUDevice *dev, const char *name,
-                          const SDL_GPUShaderCreateInfo *params) {
+                                 const SDL_GPUShaderCreateInfo *params) {
   // get path
   int pathSize = snprintf(NULL, 0, "%s/%s", basePath, name) + 1;
   char *path = SDL_malloc(pathSize);
@@ -236,6 +280,9 @@ static SDL_GPUShader *loadShader(SDL_GPUDevice *dev, const char *name,
   return shader;
 }
 
+/**
+ * Initialize program state.
+ */
 static int init() {
   basePath = SDL_GetBasePath();
 
@@ -589,6 +636,7 @@ static int init() {
     goto fail;
   }
 
+  // animation atlas
   atlasTexture = SDL_CreateGPUTexture(
       device, &(SDL_GPUTextureCreateInfo){
                   .type = SDL_GPU_TEXTURETYPE_2D,
@@ -616,7 +664,6 @@ static int init() {
   // output data
   outWidth = explosionTextureArea->w * width;
   outHeight = explosionTextureArea->h * height * 1.25;
-  output = SDL_CreateSurface(outWidth, outHeight, SDL_PIXELFORMAT_ABGR8888);
 
   resultTexture = SDL_CreateGPUTexture(
       device, &(SDL_GPUTextureCreateInfo){
@@ -837,6 +884,9 @@ fail:
   return 1;
 }
 
+/**
+ * Render an explosion animation.
+ */
 static void renderExplosion(SDL_GPUCommandBuffer *cmd,
                             SDL_GPURenderPass *render, double time) {
   if (!(results[result].explosion))
@@ -872,20 +922,28 @@ static void renderExplosion(SDL_GPUCommandBuffer *cmd,
       1);
 
   if (results[result].fireworks) {
+    // Fireworks are drawn for the 300k animation, as a separate instance
+    // of the similar main explosion animation.
     SDL_DrawGPUIndexedPrimitives(render, 6, 2, 0, 0, 0);
   } else {
     SDL_DrawGPUIndexedPrimitives(render, 6, 1, 0, 0, 0);
   }
 }
 
+/**
+ * Easing for the text animation.
+ */
 static double easeOutElastic(double x) {
-  if (x <= 0.0) return 0.0;
-  if (x >= 1.0) return 1.0;
+  if (x < 0.0)
+    return 0.0;
 
   double c4 = (2.0 * 3.1415926535897932384626433) / 3.0;
   return pow(2, -8 * x) * sin((x * 4.0 - 0.75) * c4) + 1;
 }
 
+/**
+ * Render a text label denoting whether and how accurate the note is hit.
+ */
 static void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
                        double time) {
   // animate
@@ -927,7 +985,10 @@ static void renderText(SDL_GPUCommandBuffer *cmd, SDL_GPURenderPass *render,
   SDL_DrawGPUIndexedPrimitives(render, 6, 1, 0, 0, 0);
 }
 
-static void postprocess(SDL_GPUCommandBuffer *cmd, SDL_GPUTexture *dst,
+/**
+ * Postprocess the explosion animation for use with osu!.
+ */
+static void postProcess(SDL_GPUCommandBuffer *cmd, SDL_GPUTexture *dst,
                         SDL_GPUTexture *src) {
   SDL_GPURenderPass *render =
       SDL_BeginGPURenderPass(cmd,
@@ -964,9 +1025,13 @@ static void postprocess(SDL_GPUCommandBuffer *cmd, SDL_GPUTexture *dst,
   SDL_EndGPURenderPass(render);
 }
 
-static int process(double time, SDL_Surface *surface) {
+/**
+ * Draw an animation frame.
+ */
+static int process(double time) {
   SDL_GPUCommandBuffer *commands = SDL_AcquireGPUCommandBuffer(device);
 
+  // draw
   SDL_GPURenderPass *render =
       SDL_BeginGPURenderPass(commands,
                              &(SDL_GPUColorTargetInfo){
@@ -987,8 +1052,10 @@ static int process(double time, SDL_Surface *surface) {
   renderText(commands, render, time);
   SDL_EndGPURenderPass(render);
 
-  postprocess(commands, postprocTexture, resultTexture);
+  // post process
+  postProcess(commands, postprocTexture, resultTexture);
 
+  // download to CPU
   SDL_GPUCopyPass *copy = SDL_BeginGPUCopyPass(commands);
   SDL_DownloadFromGPUTexture(copy,
                              &(SDL_GPUTextureRegion){
@@ -1010,19 +1077,29 @@ static int process(double time, SDL_Surface *surface) {
                              });
   SDL_EndGPUCopyPass(copy);
 
+  // submit commands then wait for data to be ready
   SDL_GPUFence *fence = SDL_SubmitGPUCommandBufferAndAcquireFence(commands);
   SDL_WaitForGPUFences(device, false, (SDL_GPUFence *[]){fence}, 1);
   SDL_ReleaseGPUFence(device, fence);
-
-  const void *outputBuf =
-      SDL_MapGPUTransferBuffer(device, outputDownload, false);
-  memcpy(output->pixels, outputBuf, output->pitch * output->h);
-  SDL_UnmapGPUTransferBuffer(device, outputDownload);
   return 0;
 }
 
+/**
+ * Save outputDownload to the specified filename.
+ */
+static void saveFrame(const char *path) {
+  void *pixels = SDL_MapGPUTransferBuffer(device, outputDownload, false);
+  SDL_Surface *surface = SDL_CreateSurfaceFrom(
+      outWidth, outHeight, SDL_PIXELFORMAT_ABGR8888, pixels, outWidth * 4);
+  IMG_SavePNG(surface, path);
+  SDL_DestroySurface(surface);
+  SDL_UnmapGPUTransferBuffer(device, outputDownload);
+}
+
+/**
+ * Destroy all program state on the heap.
+ */
 static void cleanup() {
-  SDL_DestroySurface(output);
   SDL_ReleaseGPUTransferBuffer(device, outputDownload);
   SDL_ReleaseGPUTexture(device, atlasTexture);
   SDL_ReleaseGPUTexture(device, resultTexture);
@@ -1037,6 +1114,25 @@ static void cleanup() {
   SDL_DestroyGPUDevice(device);
 }
 
+const char helpString[] =
+    "usage: %s [-2h] [-t ANIMATION] -o BASENAME TEXTURE\n"
+    "Generate gradient-based hit animations for osu!taiko.\n"
+    "\n"
+    "  -2, --hd               append @2x.png instead of .png to the\n"
+    "                         generated frames\n"
+    "  -h, --help             display this help\n"
+    "  -o, --output BASENAME  specify the base filename for the generated\n"
+    "                         frames\n"
+    "  -t, --type ANIMATION   specify the animation to generate\n"
+    "  --animation ANIMATION  alias for '--type'\n"
+    "\n"
+    "Available animations:\n"
+    "  1. perfect hit (a.k.a. 300)\n"
+    "  2. imperfect hit (a.k.a. 100)\n"
+    "  3. perfect strong hit (a.k.a. 300k)\n"
+    "  4. imperfect strong hit (a.k.a. 100k)\n"
+    "  5. miss\n";
+
 int main(int argc, char **argv) {
   SDL_Init(SDL_INIT_VIDEO);
 
@@ -1049,6 +1145,10 @@ int main(int argc, char **argv) {
   int opt;
   while ((opt = getopt_long(argc, argv, shortopts, longopts, NULL)) != -1) {
     switch (opt) {
+    case 'h': {
+      fprintf(stdout, helpString, argv[0]);
+      return EXIT_SUCCESS;
+    }
     case 't': {
       char *end;
       result = strtol(optarg, &end, 0);
@@ -1071,13 +1171,14 @@ int main(int argc, char **argv) {
   }
 
   if (argc - optind < 1) {
-    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "No input texture");
+    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "no input texture");
     return EXIT_FAILURE;
   }
   inputPath = argv[optind];
 
   if (outputBaseName == NULL) {
-    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "No output template");
+    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+                 "no output template (specify with -o)");
     return EXIT_FAILURE;
   }
 
@@ -1088,12 +1189,12 @@ int main(int argc, char **argv) {
   }
 
   for (int i = 0; i < results[result].frames; ++i) {
-    process(i, output);
+    process(i);
 
     int outputNameSize = snprintf(NULL, 0, format, outputBaseName, i) + 1;
     char *outputName = SDL_malloc(outputNameSize);
     snprintf(outputName, outputNameSize, format, outputBaseName, i);
-    IMG_SavePNG(output, outputName);
+    saveFrame(outputName);
     SDL_free(outputName);
   }
 
