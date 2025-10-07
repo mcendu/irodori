@@ -51,7 +51,7 @@
      transform="translate(-269,17)">
     <g
        id="g1"
-       transform="matrix(2.25,0,0,1,-426.25,0)"
+       transform="matrix(2.25,0,0,-1,-426.25,4)"
        clip-path="url(#clipPath4)">
       <rect
          style="fill:none;fill-opacity:1;stroke-width:4"

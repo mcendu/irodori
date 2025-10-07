@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="4"
-     inkscape:cx="41.5"
-     inkscape:cy="-16.875"
+     inkscape:cx="73.5"
+     inkscape:cy="9.375"
      inkscape:window-width="2259"
      inkscape:window-height="1218"
      inkscape:window-x="0"
@@ -60,6 +60,7 @@
        stroke-width="4"
        style="fill:#f87c63;fill-opacity:1;paint-order:stroke fill markers"
        id="rect309-7"
-       clip-path="url(#clipPath1)" />
+       clip-path="url(#clipPath1)"
+       transform="matrix(1,0,0,-1,0,4)" />
   </g>
 </svg>
