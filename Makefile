@@ -1,4 +1,4 @@
-VERSION=0.4
+VERSION=0.5pre1
 
 PLAYER="Pippi"
 PLAYER_LANG="en"
@@ -404,6 +404,43 @@ IMAGES_SD=\
 	mania-hit200.png \
 	mania-hit300.png \
 	mania-hit300g.png \
+	mania-hold1-big.png \
+	mania-hold1-mid.png \
+	mania-hold2-big.png \
+	mania-hold2-mid.png \
+	mania-holdC-mid.png \
+	mania-holdS-mid.png \
+	mania-holdU-mid.png \
+	mania-hud-acc.png \
+	mania-hud-score.png \
+	mania-key1-big.png \
+	mania-key1-mid.png \
+	mania-key1D-big.png \
+	mania-key1D-mid.png \
+	mania-key2-big.png \
+	mania-key2-mid.png \
+	mania-key2D-big.png \
+	mania-key2D-mid.png \
+	mania-keyS-mid.png \
+	mania-keyU-mid.png \
+	mania-keyUD-mid.png \
+	mania-note1-big.png \
+	mania-note1-mid.png \
+	mania-note2-big.png \
+	mania-note2-mid.png \
+	mania-noteC-mid.png \
+	mania-noteS-mid.png \
+	mania-noteU-mid.png \
+	mania-stage-hint.png \
+	mania-stage-left.png \
+	mania-stage-right.png \
+	mania-tail1-big.png \
+	mania-tail1-mid.png \
+	mania-tail2-big.png \
+	mania-tail2-mid.png \
+	mania-tailC-mid.png \
+	mania-tailS-mid.png \
+	mania-tailU-mid.png \
 	pippidonclear.png \
 	pippidonfail.png \
 	pippidonidle.png \

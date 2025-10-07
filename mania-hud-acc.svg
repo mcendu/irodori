@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="257"
+   height="50"
+   viewBox="0 0 257 49.999999"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="mania-hud-acc.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="2"
+     inkscape:cx="79.5"
+     inkscape:cy="-164.25"
+     inkscape:window-width="2259"
+     inkscape:window-height="1218"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="sc_p"
+       x1="873"
+       x2="873"
+       y1="712"
+       y2="760"
+       gradientTransform="translate(-715.5,-434.5)"
+       gradientUnits="userSpaceOnUse"
+       xlink:href="#sc_g"
+       inkscape:collect="always" />
+    <linearGradient
+       id="sc_g"
+       inkscape:label="blue">
+      <stop
+         stop-color="#6ac3ee"
+         offset="0"
+         id="stop1"
+         style="stop-color:#efa3bd;stop-opacity:1;" />
+      <stop
+         stop-color="#0081a7"
+         offset="1"
+         id="stop2"
+         style="stop-color:#c14e7d;stop-opacity:1;" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-156.5,-276.5)">
+    <rect
+       x="157.5"
+       y="277.5"
+       width="255"
+       height="48"
+       rx="4"
+       fill="url(#sc_p)"
+       stroke="#000000"
+       style="fill:url(#sc_p);stroke-width:2;stroke-dasharray:none;paint-order:stroke fill markers"
+       inkscape:label="background"
+       id="rect33" />
+    <text
+       x="163"
+       y="318"
+       fill="#f1f1f1"
+       font-family="'Potta One'"
+       font-size="24px"
+       letter-spacing="0px"
+       stroke="#000000"
+       style="stroke-width:2;stroke-dasharray:none;paint-order:stroke fill markers"
+       inkscape:label="label"
+       xml:space="preserve"
+       id="text34"><tspan
+         x="163"
+         y="318"
+         sodipodi:role="line"
+         id="tspan34">精度</tspan></text>
+  </g>
+</svg>

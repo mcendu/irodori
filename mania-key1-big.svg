@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="90"
+   height="70"
+   viewBox="0 0 90 69.999998"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="mania-key1-big.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="-0.35355339"
+     inkscape:cy="23.334524"
+     inkscape:window-width="1025"
+     inkscape:window-height="1217"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g88" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="sc_c"
+       x1="461"
+       x2="461"
+       y1="698"
+       y2="764"
+       gradientTransform="translate(-61.999,169.0006)"
+       gradientUnits="userSpaceOnUse"
+       xlink:href="#sc_f"
+       inkscape:collect="always" />
+    <linearGradient
+       id="sc_f"
+       inkscape:label="blue">
+      <stop
+         stop-color="#6ac3ee"
+         offset="0"
+         id="stop7"
+         style="stop-color:#efa3bd;stop-opacity:1;" />
+      <stop
+         stop-color="#006685"
+         offset="1"
+         id="stop8"
+         style="stop-color:#b90067;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="sc_q"
+       inkscape:collect="always"
+       inkscape:label="whitekey">
+      <stop
+         stop-color="#d4d4d4"
+         offset="0"
+         id="stop9" />
+      <stop
+         stop-color="#f1f1f1"
+         offset="1"
+         id="stop10" />
+    </linearGradient>
+    <linearGradient
+       id="sc_j"
+       x1="361.22"
+       x2="422.73001"
+       y1="995.40997"
+       y2="995.40997"
+       gradientTransform="scale(1.3981,0.71528)"
+       gradientUnits="userSpaceOnUse"
+       inkscape:label="blackkey">
+      <stop
+         stop-color="#303030"
+         offset="0"
+         id="stop3" />
+      <stop
+         stop-color="#919191"
+         offset="1"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#sc_q"
+       id="linearGradient1"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-3.9993,-3.9994)"
+       x1="509"
+       y1="716"
+       x2="509"
+       y2="760" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(259,175)">
+    <g
+       transform="translate(-658,-1040)"
+       inkscape:label="5k"
+       id="g88">
+      <rect
+         x="399"
+         y="865"
+         width="90"
+         height="70"
+         fill="url(#sc_c)"
+         stroke="#000000"
+         stroke-linecap="round"
+         stroke-width="4"
+         style="fill:#000000;fill-opacity:1;stroke:none;paint-order:stroke fill markers"
+         inkscape:label="background"
+         id="rect77-1" />
+      <rect
+         x="399"
+         y="867"
+         width="90"
+         height="66"
+         fill="url(#sc_c)"
+         stroke="#000000"
+         stroke-linecap="round"
+         stroke-width="4"
+         style="fill:url(#sc_c);stroke:none;paint-order:stroke fill markers"
+         inkscape:label="background"
+         id="rect77" />
+      <g
+         inkscape:label="button"
+         id="g79"
+         transform="translate(-104,167)">
+        <rect
+           x="505"
+           y="712"
+           width="86"
+           height="54"
+           fill="#777777"
+           stroke="#000000"
+           stroke-linecap="round"
+           stroke-width="4"
+           style="paint-order:stroke fill markers"
+           inkscape:label="edge"
+           id="rect78" />
+        <rect
+           x="505"
+           y="712"
+           width="86"
+           height="44"
+           fill="url(#sc_a)"
+           style="fill:url(#linearGradient1);paint-order:stroke fill markers"
+           inkscape:label="surface"
+           id="rect79" />
+      </g>
+    </g>
+  </g>
+</svg>

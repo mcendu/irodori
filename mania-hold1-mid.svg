@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="144"
+   height="38"
+   viewBox="0 0 144 37.999999"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="mania-hold1-mid.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="2"
+     inkscape:cx="47.5"
+     inkscape:cy="56.25"
+     inkscape:window-width="2259"
+     inkscape:window-height="1218"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-269,17)">
+    <g
+       id="g1"
+       transform="matrix(2,0,0,1,-341,0)">
+      <rect
+         style="fill:none;fill-opacity:1;stroke-width:4"
+         id="rect1"
+         width="72"
+         height="38"
+         x="305"
+         y="-17" />
+      <rect
+         x="309"
+         y="-19"
+         width="64"
+         height="42"
+         fill="#e2e2e2"
+         stroke="#000000"
+         stroke-width="4"
+         style="fill:#e2e2e2;fill-opacity:1;paint-order:stroke fill markers"
+         id="rect308" />
+    </g>
+  </g>
+</svg>
