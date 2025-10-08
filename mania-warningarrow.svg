@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="84"
+   height="55"
+   viewBox="0 0 83.999999 55.000003"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="mania-warningarrow.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1"
+     inkscape:cx="7"
+     inkscape:cy="23"
+     inkscape:window-width="1382"
+     inkscape:window-height="901"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-358.98545,-462.17346)">
+    <path
+       style="fill:#f1f1f1;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 401.97127,492.86894 c -8.00002,-9.74956 -14.00002,-17.74956 -24.00002,-25.74956 -4.41726,-3.5338 -8,-2 -10,0 l -4,4 c -4,4 -2.26274,6.30294 0,8 8,6 14,12 18,16 6,6 10,10 14.00002,16 3.13788,4.70678 8,4 12,0 6,-6 8,-10 15.99998,-18 4,-4 8,-8 14,-12.00044 2.3534,-1.56906 4.0002,-6.00022 0,-10 l -4,-3.99956 c -4,-3.99956 -7.9788,-2.02114 -12,2 -7.99998,8 -13.99998,16 -19.99998,23.74956 z"
+       id="path164"
+       sodipodi:nodetypes="cssssssssssssc"
+       inkscape:label="Arrow" />
+  </g>
+</svg>

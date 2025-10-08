@@ -442,6 +442,7 @@ IMAGES_SD=\
 	mania-tailC-mid.png \
 	mania-tailS-mid.png \
 	mania-tailU-mid.png \
+	mania-warningarrow.png \
 	pippidonclear.png \
 	pippidonfail.png \
 	pippidonidle.png \
