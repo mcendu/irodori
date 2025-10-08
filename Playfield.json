@@ -115,8 +115,8 @@
       {
         "Type": "osu.Game.Skinning.LegacyHealthDisplay, osu.Game, Version=2025.912.0.0, Culture=neutral, PublicKeyToken=null",
         "Position": {
-          "x": 10.0,
-          "y": -75.0
+          "x": 4.0,
+          "y": -64.0
         },
         "Rotation": -90.0,
         "Scale": {
@@ -129,31 +129,6 @@
         "Origin": 9,
         "UsesFixedAnchor": true,
         "Settings": {},
-        "Children": []
-      },
-      {
-        "Type": "osu.Game.Screens.Play.HUD.HitErrorMeters.BarHitErrorMeter, osu.Game, Version=2025.912.0.0, Culture=neutral, PublicKeyToken=null",
-        "Position": {
-          "x": 0.0,
-          "y": 540.0
-        },
-        "Rotation": -90.0,
-        "Scale": {
-          "x": 1.0,
-          "y": 1.0
-        },
-        "Width": null,
-        "Height": null,
-        "Anchor": 17,
-        "Origin": 18,
-        "UsesFixedAnchor": true,
-        "Settings": {
-          "judgement_line_thickness": 4.0,
-          "colour_bar_visibility": true,
-          "show_moving_average": true,
-          "centre_marker_style": 1,
-          "label_style": 1
-        },
         "Children": []
       },
       {
@@ -236,6 +211,31 @@
         "Origin": 10,
         "UsesFixedAnchor": true,
         "Settings": {},
+        "Children": []
+      },
+      {
+        "Type": "osu.Game.Screens.Play.HUD.HitErrorMeters.BarHitErrorMeter, osu.Game, Version=2025.912.0.0, Culture=neutral, PublicKeyToken=null",
+        "Position": {
+          "x": 0.0,
+          "y": 540.0
+        },
+        "Rotation": -90.0,
+        "Scale": {
+          "x": 1.0,
+          "y": 1.0
+        },
+        "Width": null,
+        "Height": null,
+        "Anchor": 17,
+        "Origin": 18,
+        "UsesFixedAnchor": true,
+        "Settings": {
+          "judgement_line_thickness": 4.0,
+          "colour_bar_visibility": true,
+          "show_moving_average": true,
+          "centre_marker_style": 1,
+          "label_style": 1
+        },
         "Children": []
       }
     ]
