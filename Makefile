@@ -380,6 +380,7 @@ IMAGES_SD=\
 	cursor.png \
 	cursormiddle.png \
 	cursortrail.png \
+	empty.png \
 	$(IMAGES_FOLLOWPOINT) \
 	hit0.png \
 	$(IMAGES_HIT0) \
