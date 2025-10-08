@@ -25,8 +25,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="2"
-     inkscape:cx="79.5"
-     inkscape:cy="-164.25"
+     inkscape:cx="115.5"
+     inkscape:cy="-62.75"
      inkscape:window-width="2259"
      inkscape:window-height="1218"
      inkscape:window-x="0"
@@ -73,7 +73,7 @@
        rx="4"
        fill="url(#sc_p)"
        stroke="#000000"
-       style="fill:url(#sc_p);stroke-width:2;stroke-dasharray:none;paint-order:stroke fill markers"
+       style="fill:url(#sc_p);stroke-width:2;stroke-dasharray:none;paint-order:normal"
        inkscape:label="background"
        id="rect33" />
     <text

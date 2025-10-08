@@ -3,12 +3,12 @@
 
 <svg
    width="672"
-   height="64"
-   viewBox="0 0 672 63.999998"
+   height="40"
+   viewBox="0 0 672 39.999999"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
-   sodipodi:docname="mania-target-small.svg"
+   sodipodi:docname="mania-stage-hint.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="1"
-     inkscape:cx="206.5"
-     inkscape:cy="193.5"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="276.1252"
+     inkscape:cy="-49.320698"
      inkscape:window-width="2259"
      inkscape:window-height="1218"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="g203" />
   <defs
      id="defs1" />
   <g
@@ -45,20 +45,22 @@
        id="g203">
       <rect
          x="461"
-         y="588"
+         y="584"
          width="672"
-         height="22"
+         height="16"
          fill="#5e5e5e"
          inkscape:label="fill"
-         id="rect202" />
+         id="rect202"
+         style="stroke-width:0.852803" />
       <rect
          x="461"
          y="580"
          width="672"
-         height="4"
+         height="2"
          fill="#777777"
          inkscape:label="edge"
-         id="rect203" />
+         id="rect203"
+         style="stroke-width:0.707107" />
     </g>
   </g>
 </svg>
