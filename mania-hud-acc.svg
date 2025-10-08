@@ -73,7 +73,7 @@
        rx="4"
        fill="url(#sc_p)"
        stroke="#000000"
-       style="fill:url(#sc_p);stroke-width:2;stroke-dasharray:none;paint-order:normal"
+       style="fill:url(#sc_p);stroke-width:1.5;stroke-dasharray:none;paint-order:normal"
        inkscape:label="background"
        id="rect33" />
     <text
