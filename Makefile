@@ -1,4 +1,4 @@
-VERSION=0.5pre2
+VERSION=0.5pre3
 
 PLAYER="Pippi"
 PLAYER_LANG="en"
